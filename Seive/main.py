@@ -60,6 +60,10 @@ def getpoints(index):
 
 def wrapperInterpolate(m,xindex,yindex):
   def interpolate(lx,ly,cr=1,fmin=0,fmax=1):
+    def lo(m)      : return 0.0
+    def hi(m)      : return  1.0
+    def trim(x)  : # trim to legal range
+      return max(lo(x), x%hi(x))
     assert(len(lx)==len(ly))
     genPoint=[]
     for i in xrange(len(lx)):
@@ -69,11 +73,12 @@ def wrapperInterpolate(m,xindex,yindex):
       rand = random.random()
       if rand < cr:
         probEx = fmin +(fmax-fmin)*random.random()
-        new = min(x,y)+probEx*abs(x-y)
+        new = trim(min(x,y)+probEx*abs(x-y))
       else:
         new = y
       genPoint.append(new)
     return genPoint
+
   decision=[]
   xpoints=getpoints(xindex)
   ypoints=getpoints(yindex)
@@ -84,11 +89,11 @@ def wrapperInterpolate(m,xindex,yindex):
   return decision
 
 
-def generateSlot(m,decision):
+def generateSlot(m,decision,x,y):
   newpoint = Slots(changed = True,
             scores=None, 
-            xblock=-1, #sam
-            yblock=-1,  #sam
+            xblock=x, #sam
+            yblock=y,  #sam
             x=-1,
             y=-1,
             obj = [None] * len(objectives(m)), #[None]*4
@@ -100,38 +105,155 @@ def generateSlot(m,decision):
 
 
 #There are three points and I am trying to extrapolate. Need to pass two cell numbers
-def extrapolate(lx,ly,lz,cr=1,fmin=0.9,fmax=2):
-  def lo(m)      : return 0.0
-  def hi(m)      : return  5.0
-  def trim(x)  : # trim to legal range
-    return max(lo(x), x%hi(x))
-  assert(len(lx)==len(ly)==len(lz))
-  genPoint=[]
-  for i in xrange(len(lx)):
-    x,y,z = lx[i],ly[i],lz[i]
-    rand = random.random()
+def wrapperextrapolate(m,xindex,yindex):
+  def extrapolate(lx,ly,lz,cr=1,fmin=0.9,fmax=2):
+    def lo(m)      : return 0.0
+    def hi(m)      : return  1.0
+    def trim(x)  : # trim to legal range
+      return max(lo(x), x%hi(x))
+    assert(len(lx)==len(ly)==len(lz))
+    genPoint=[]
+    for i in xrange(len(lx)):
+      x,y,z = lx[i],ly[i],lz[i]
+      rand = random.random()
 
-    if rand < cr:
-      probEx = fmin + (fmax-fmin)*random.random()
-      print probEx
-      new = trim(x + probEx*(y-z))
-    else:
-      new = y #Just assign a value for that decision
-    genPoint.append(new)
-  return genPoint
+      if rand < cr: 
+        probEx = fmin + (fmax-fmin)*random.random()
+        new = trim(x + probEx*(y-z))
+      else:
+        new = y #Just assign a value for that decision
+      genPoint.append(new)
+    print genPoint
+    return genPoint
+
+  decision=[]
+  #TODO: need to put an assert saying checking whether extrapolation is actually possible
+  xpoints=getpoints(xindex)
+  ypoints=getpoints(yindex)
+  for ij in xpoints:
+    two = ij
+    index2,index3=0,0
+    while(index2 == index3): #just making sure that the indexes are not the same
+      index2=random.randint(0,len(ypoints)-1)
+      index3=random.randint(0,len(ypoints)-1)
+
+    three=ypoints[index2]
+    four=ypoints[index3]
+    temp = extrapolate(two,three,four)
+    #decision.append(extrapolate(two,three,four))
+    decision.append(temp)
+  return decision
 
 
+
+"""
+def decisions:
+if there are enough points then look at the neighbour. Look for the cell which has 
+  i.   highest number of points
+  ii.  lowest mean energy. energy is a the sum of all the objectives
+  iii. lowest variance
+else
+  if the opposite cells have threshold number of cells interpolate
+  else if there are consequtive points which have threshold points then extrapolate
+"""
 
 def decisionMaker(m,xblock,yblock):
+  gonw = lambda x: x - 101
+  gow = lambda x: x-1
+  gosw = lambda x: x + 99
+  gos = lambda x: x + 100
+  gose = lambda x: x +101
+  goe = lambda x: x+1
+  gone = lambda x: x - 99
+  gon = lambda x: x-100
+  convert = lambda x,y: x*100+y
+
+  def indexConvert(index):
+    return int(index/100),index%10
+
   def opposite(a,b):
     ax,ay,bx,by=a/100,a%100,b/100,b%100
     if(abs(ax-bx)==2 or abs(ay-by)==2):return True
     else: return False
 
+  def thresholdCheck(index):
+    if(len(dictionary[index])<threshold):return True
+    else:return False
+
+  def extrapolateCheck(xblock,yblock):
+    #TODO: If there are more than one consequetive blocks with threshold number of points how do we handle it?
+    #TODO: Need to make this logic more succint
+
+    #go North West
+    temp = gonw(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(gonw(temp))
+      if(result1 and result2 == True):
+        return temp,gonw(temp)
+
+    #go North 
+    temp = gon(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(gon(temp))
+      if(result1 and result2 == True):
+        return temp,gon(temp)
+
+    #go North East
+    temp = gone(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(gone(temp))
+      if(result1 and result2 == True):
+        return temp,gone(temp)
+
+    #go East
+    temp = goe(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(goe(temp))
+      if(result1 and result2 == True):
+        return temp,goe(temp)
+
+    #go South East
+    temp = gose(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(gose(temp))
+      if(result1 and result2 == True):
+        return temp,gose(temp)
+
+    #go South
+    temp = gos(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(gos(temp))
+      if(result1 and result2 == True):
+        return temp,gos(temp)
+
+    #go South West
+    temp = gosw(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(gosw(temp))
+      if(result1 and result2 == True):
+        return temp,gosw(temp)
+
+    #go West
+    temp = gow(convert(xblock,yblock))
+    result1 = thresholdCheck(temp)
+    if result == True:
+      result2 = thresholdCheck(gow(temp))
+      if(result1 and result2 == True):
+        return temp,gow(temp)
+    return None,None
+
   newpoints=[]
   threshold=3
-  if(len(dictionary[xblock*100+yblock])<threshold):
-    print "Cell is relatively sparse: Might need to generate new points"
+  if(thresholdCheck(convert(xblock,yblock))==False):
+    print "Cell is relwatively sparse: Might need to generate new points"
+
   neigh = neighbourhood(xblock,yblock)
   neigh = dict((k, v) for k, v in neigh.iteritems() if v>threshold)
   for key, value in neigh.iteritems():
@@ -139,23 +261,29 @@ def decisionMaker(m,xblock,yblock):
   vallist=neigh.keys()
   import itertools 
   for pair in itertools.combinations(vallist,2):
-    if(opposite(*pair)):
+    if(opposite(*pair)==True):
       print energy(xblock,yblock)
       print "We could create more points in this cell %d %d"%(xblock,yblock),
       print pair
       decisions = wrapperInterpolate(m,pair[0],pair[1])
-      for decision in decisions:newpoints.append(generateSlot(m,decision))
-  print "Number of new points generated: ", len(newpoints)
+      for decision in decisions:newpoints.append(generateSlot(m,decision,xblock,yblock))
+  
+  print "Interpolation: Number of new points generated: ", len(newpoints)
   for ij in newpoints:
     print ij.obj
-
-
-
-  index=xblock*100+yblock
-  #If number of elements less than a threshold, create new points
-  if(len(dictionary[index])<threshold):
-    print "Create New Points"
-    
+  
+  if(len(newpoints)==0):
+    findex,sindex = extrapolateCheck(xblock,yblock)
+    if(findex==None and sindex==None):
+      print "In a tight spot..somewhere in the desert"
+    else:
+      decisions = wrapperextrapolate(m,findex,sindex)
+      for decision in decisions: newpoints.append(generateSlot(m,decisions,xblock,yblock))
+  
+      print "Extrapolation: Number of new points generated: ", len(newpoints)
+      for ij in newpoints:
+        print ij.obj
+  
 
   
 def main():
@@ -181,23 +309,7 @@ def main():
   #print "Elements: %d"%len(dictionary[506])
   #print neighbourhood(5,6)
   decisionMaker(m,5,6)
-
-def _neighbourhood():
-  neighbourhood(0,0)
-  neighbourhood(7,7)
-  neighbourhood(0,7)
-  neighbourhood(7,0)
-  neighbourhood(0,4)
-  neighbourhood(4,0)
-  neighbourhood(7,4)
-  neighbourhood(4,7)
-
-def _extrapolate():
-  print extrapolate([2,2,2],[3,3,3],[1,1,1],fmin=0,fmax=0.1)
-
-def _interpolate():
-  print interpolate([3,3,3],[2,2,2])
-
+  #wrapperextrapolate(m,405,607)
 
 
 if __name__ == '__main__':
