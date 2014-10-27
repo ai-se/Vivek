@@ -555,7 +555,6 @@ A standard call to WHERE, pruning disabled:
 """
 
 def whereMain():
-  random.seed(3)
   m, max, pop, kept = "model",1000, [], Num()
   for _ in range(max):
     one = candidate(m)  #Generate candidate
