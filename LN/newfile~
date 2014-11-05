@@ -1,0 +1,681 @@
+0: introduct note program environ data analysi graphic version 3.1.2 2014-10-31 venabl smith core team manual version 3.1.2 2014-10-31 copyright cid 1990 venabl copyright cid 1992 venabl smith copyright cid 1997 gentleman ihaka copyright cid 1997 1998 maechler copyright cid 1999 2014 core team permiss grant make distribut verbatim copi manual provid copyright notic permiss notic preserv copi permiss grant copi distribut modifi version manual condit verbatim copi provid entir result deriv work distribut term permiss notic ident one permiss grant copi distribut translat manual an- languag condit modifi version except permiss notic may state translat approv core team 
+1: tabl content prefac introduct preliminari 1.1 environ 1.2 relat softwar document 1.3 statistics. 1.4 window system 1.5 use interact 1.6 introductori session. 1.7 get help function featur 1.8 command case sensit etc. 1.9 recal correct previou command 1.10 execut command divert output file 1.11 data perman remov objects. simpl manipul number vectors. 2.1 vector assign 2.2 vector arithmet 2.3 gener regular sequenc 2.4 logic vector 2.5 miss valu 2.6 charact vector 2.7 index vector select modifi subset data set 2.8 type object object mode attribut 3.1 intrins attribut mode length 3.2 chang length object 3.3 get set attribut 3.4 class object order unord factors. 4.1 specif example. 4.2 function tappli rag arrays. 4.3 order factor array matric 5.1 array 5.2 array indexing. subsect array 5.3 index matric 5.4 array function 5.4.1 mix vector array arithmetic. recycl rule. 5.5 outer product two array 5.6 gener transpos array 5.7 matrix facil 5.7.1 matrix multipl 5.7.2 linear equat invers 5.7.3 eigenvalu eigenvector 5.7.4 singular valu decomposit determin 5.7.5 least squar fit decomposit 5.8 form partit matric cbind rbind 5.9 concaten function array 5.10 frequenc tabl factors. list data frame 6.1 list 6.2 construct modifi list 6.2.1 concaten list 6.3 data frame 6.3.1 make data frame 6.3.2 attach detach 6.3.3 work data frame 6.3.4 attach arbitrari list 6.3.5 manag search path read data file 7.1 read.tabl function 7.2 scan function 7.3 access builtin dataset 7.3.1 load data packag 7.4 edit data probabl distribut 8.1 set statist tabl 8.2 examin distribut set data 8.3 one- two-sampl test group loop condit execut 9.1 group expressions. 9.2 control statement 9.2.1 condit execut statement 9.2.2 repetit execut loop repeat write function 10.1 simpl exampl 10.2 defin new binari oper 10.3 name argument default 10.4 ... argument 10.5 assign within function 10.6 advanc exampl 10.6.1 effici factor block design 10.6.2 drop name print array 10.6.3 recurs numer integr 10.7 scope 10.8 custom environ 10.9 class gener function object orient iii statist model 11.1 defin statist model formula 11.1.1 contrast 11.2 linear model 11.3 gener function extract model inform 11.4 analysi varianc model comparison 11.4.1 anova tabl 11.5 updat fit model 11.6 gener linear model 11.6.1 famili 11.6.2 glm function. 11.7 nonlinear least squar maximum likelihood model 11.7.1 least squar 11.7.2 maximum likelihood 11.8 non-standard model graphic procedur 12.1 high-level plot command 12.1.1 plot function 12.1.2 display multivari data 12.1.3 display graphic 12.1.4 argument high-level plot function 12.2 low-level plot command 12.2.1 mathemat annot 12.2.2 hershey vector font 12.3 interact graphic 12.4 use graphic paramet 12.4.1 perman chang par function 12.4.2 temporari chang argument graphic function 12.5 graphic paramet list. 12.5.1 graphic element 12.5.2 axe tick mark 12.5.3 figur margin 12.5.4 multipl figur environ 12.6 devic driver 12.6.1 postscript diagram typeset document 12.6.2 multipl graphic devic 12.7 dynam graphic packag 13.1 standard packag 13.2 contribut packag cran 13.3 namespac facil 14.1 file directori 14.2 filepath 14.3 system command 14.4 compress archiv appendix sampl session appendix invok invok command line b.1 invok window b.2 b.3 invok b.4 script appendix command-lin editor c.1 preliminari c.2 edit action c.3 command-lin editor summari appendix function variabl index appendix concept index appendix refer prefac prefac introduct deriv origin set note describ s-plu environ written 1990 bill venabl david smith univers adelaide. made number small chang reflect differ program expand materi 
+2: would like extend warm thank bill venabl david smith grant permiss distribut modifi version note way support way back 
+3: comment correct alway welcome. pleas address email correspond r-core r-project.org 
+4: suggest reader novic start introductori session appendix give familiar style session importantli instant feedback actual happen 
+5: mani user come mainli graphic facilities. see chapter graphic page read almost time need wait preced section digest 
+6: chapter introduct preliminari introduct preliminari 1.1 environ integr suit softwar facil data manipul calcul graphic display. among thing effect data handl storag facil suit oper calcul array particular matric larg coher integr collect intermedi tool data analysi graphic facil data analysi display either directli comput hard- copi well develop simpl effect program languag call includ condit loop user defin recurs function input output facilities. inde system suppli function written language. term environ intend character fulli plan coher system rather increment accret specif inflex tool frequent case data analysi softwar 
+7: much vehicl newli develop method interact data analysis. develop rapidli extend larg collect packages. howev program written essenti ephemer written singl piec data analysi 
+8: 1.2 relat softwar document regard implement languag develop bell labora- tori rick becker john chamber allan wilk also form basi s-plu system 
+9: evolut languag character four book john chamber coauthors. basic refer new languag program environ data analysi graphic richard becker john chamber allan wilk new featur 1991 releas cover statist model edit john chamber trevor hastie. formal method class method packag base describ program data john chambers. see appendix refer page precis refer 
+10: number book describ use data analysi statist document s/s-plu typic use keep differ implement mind. see section document exist statist system faq 
+11: 1.3 statist introduct environ mention statist yet mani peopl use statist system. prefer think environ within mani classic modern statist techniqu implemented. built base environ mani suppli packages. packag suppli call standard recommend packag mani avail cran famili internet site via http //cran.r-project.org elsewhere. detail packag given later see chapter packag page 
+12: classic statist much latest methodolog avail use user may need prepar littl work find 
+13: chapter introduct preliminari import differ philosophi henc main statist systems. statist analysi normal done seri step intermedi result store objects. thu wherea sa spss give copiou output regress discrimin analysi give minim output store result fit object subsequ interrog function 
+14: 1.4 window system conveni way use graphic workstat run window system guid aim user facility. particular occasion refer use window system although vast bulk said appli gener implement environ 
+15: user find necessari interact directli oper system comput time time. guid mainli discuss interact oper system unix machines. run window need make small adjust 
+16: set workstat take full advantag customiz featur straight- forward somewhat tediou procedur consid here. user diffi- culti seek local expert help 
+17: 1.5 use interact use program issu prompt expect input commands. default prompt unix might shell prompt may appear noth happening. howev shall see easi chang differ prompt wish. assum unix shell prompt 
+18: use unix suggest procedur first occas follow creat separ sub-directori say work hold data file use problem. work directori whenev use particular problem 
+19: mkdir work work start program command point command may issu see later quit program command point ask whether want save data session. system bring dialog box other receiv text prompt respond ye cancel singl letter abbrevi save data quit quit without save return session. data save avail futur session 
+20: session simpl 
+21: make work work directori start program work use program termin command end session 
+22: use window procedur follow basic same. creat folder work directori set start field shortcut. launch doubl click icon 
+23: chapter introduct preliminari 1.6 introductori session reader wish get feel comput proceed strongli advis work introductori session given appendix sampl session page 
+24: 1.7 get help function featur inbuilt help facil similar man facil unix. get inform specif name function exampl solv command help solv altern solv featur specifi special charact argument must enclos doubl singl quot make charact string also necessari word syntact mean includ function 
+25: help either form quot mark may use escap string import convent use doubl quot mark prefer instal help avail html format run help.start launch web browser allow help page brows hyperlinks. unix subsequ help request sent html-base help system. search engin keyword link page load help.start particularli use contain high-level concept list search though avail functions. great way get bear quickli understand breadth offer 
+26: help.search command altern allow search help variou ways. exampl solv tri help.search detail exampl exampl help topic normal run exampl topic window version option help system use help detail 
+27: 1.8 command case sensit etc 
+28: technic express languag simpl syntax. case sensit unix base packag differ symbol would refer differ variabl set symbol use name depend oper system countri within run technic local use normal alphanumer symbol allowed1 countri includ accent letter plu restrict name must start letter start second charact must digit. name effect unlimit length 
+29: elementari command consist either express assignments. express given command evalu print unless specif made invis valu lost assign also evalu express pass valu variabl result automat print 
+30: portabl code includ use packag use 
+31: chapter introduct preliminari command separ either semi-colon newline. elementari command group togeth one compound express brace comment put almost2 anywher start hashmark everyth end line comment 
+32: command complet end line give differ prompt default second subsequ line continu read input command syntact complete. prompt may chang user. gener omit continu prompt indic continu simpl indent 
+33: command line enter consol limited3 4095 byte charact 
+34: 1.9 recal correct previou command mani version unix window provid mechan recal re- execut previou commands. vertic arrow key keyboard use scroll forward backward command history. command locat way cursor move within command use horizont arrow key charact remov del key ad keys. detail provid later see appendix command-lin editor page 
+35: recal edit capabl unix highli customizable. find read manual entri readlin librari 
+36: altern emac text editor provid gener support mechan via ess emac speak statist work interact see section emac statist system faq 
+37: 1.10 execut command divert output file commands4 store extern file say commands.r work directori work may execut time session command sourc commands.r window sourc also avail file menu. function sink sink record.li divert subsequ output consol extern file record.lis. command sink restor consol 
+38: 1.11 data perman remov object entiti creat manipul known objects. may variabl array number charact string function gener structur built compon session object creat store name discuss process next session command object altern use display name object current store within collect object current store call workspac 
+39: remov object function avail insid string within argument list function definit consol allow enter amongst silent discard excess use start next line 
+40: unlimit length 
+41: chapter introduct preliminari ink junk temp foo bar object creat session store perman file use futur sessions. end session given opportun save current avail objects. indic want object written file call .rdata5 current directori command line use session save file call .rhistori 
+42: start later time directori reload workspac file. time associ command histori reload 
+43: recommend use separ work directori analys conduct quit common object name creat analysi name like often meaning context singl analysi quit hard decid might sever analys conduct directori 
+44: lead dot file name make invis normal file list unix default gui file list window 
+45: chapter simpl manipul number vector simpl manipul number vector 2.1 vector assign oper name data structures. simplest structur numer vector singl entiti consist order collect numbers. set vector name say consist five number name 10.4 5.6 3.1 6.4 21.7 use command 10.4 5.6 3.1 6.4 21.7 assign statement use function context take arbitrari number vector argument whose valu vector got concaten argument end end.1 number occur express taken vector length one notic assign oper consist two charact less minu occur strictli side-by-sid point object receiv valu expression. context oper use altern 
+46: assign also made use function assign equival way make assign assign 10.4 5.6 3.1 6.4 21.7 usual oper thought syntact short-cut 
+47: assign also made direct use obviou chang assign- ment operator. assign could made use 10.4 5.6 3.1 6.4 21.7 express use complet command valu print lost use command 1/x reciproc five valu would print termin valu cours unchang 
+48: assign would creat vector entri consist two copi zero middl place 
+49: 2.2 vector arithmet vector use arithmet express case oper perform element element. vector occur express need length. valu express vector length longest vector occur expression. shorter vector express recycl often need perhap fraction match length longest vector. particular constant simpli repeated. assign command gener new vector length construct ad togeth element element repeat 2.2 time repeat repeat time 
+50: elementari arithmet oper usual rais power. addit common arithmet function available. log exp sin co tan sqrt vector type argument list mode argument action rather differ 
+51: see section 6.2.1 concaten list page 
+52: actual still avail .last.valu statement execut 
+53: chapter simpl manipul number vector usual meaning. max min select largest smallest element vector respectively. rang function whose valu vector length two name min max length number element sum give total element prod product 
+54: two statist function mean calcul sampl mean sum /length var give sum x-mean length sampl variance. argument var n-by-p matrix valu p-by-p sampl covari matrix got regard row independ p-variat sampl vector 
+55: sort return vector size element arrang increas order howev flexibl sort facil avail see order sort.list produc permut sort 
+56: note max min select largest smallest valu argument even given sever vectors. parallel maximum minimum function pmax pmin return vector length equal longest argument contain element largest smallest element posit input vector 
+57: purpos user concern number numer vector intern calcul done doubl precis real integ real even complex number doubl precis complex number input data complex 
+58: work complex number suppli explicit complex part. thu sqrt -17 give nan warn sqrt -17 comput complex number 
+59: 2.3 gener regular sequenc number facil gener commonli use sequenc numbers. exampl vector ... colon oper high prioriti within ex- pression exampl vector ... put compar sequenc n-1 n-1 
+60: construct may use gener sequenc backward 
+61: function seq gener facil gener sequences. five argument may specifi one call. first two argument given specifi begin end sequenc two argument given result colon operator. seq 2,10 vector 
+62: argument seq mani function also given name form case order appear irrelevant. first two argument may name valu valu thu seq 1,30 seq seq 30. next two argument seq may name valu length valu specifi step size length sequenc respectively. neither given default assum 
+63: exampl seq gener vector -5.0 -4.8 -4.6 ... 4.6 4.8 5.0 similarli seq length gener vector 
+64: chapter simpl manipul number vector fifth argument may name along vector normal use argu- ment creat sequenc ... length vector empti sequenc vector empti 
+65: relat function rep use replic object variou complic ways. simplest form rep time put five copi end-to-end s5. anoth use version rep repeat element five time move next 
+66: 2.4 logic vector well numer vector allow manipul logic quantities. element logic vector valu true fals avail see first two often abbrevi respectively. note howev variabl set true fals default reserv word henc overwritten user. henc alway use true fals 
+67: logic vector gener conditions. exampl temp set temp vector length valu fals correspond element condit met true 
+68: logic oper exact equal inequality. addit logic express intersect union negat 
+69: logic vector may use ordinari arithmet case coerc numer vector fals becom true becom howev situat logic vector coerc numer counterpart equival exampl see next subsect 
+70: 2.5 miss valu case compon vector may complet known. element valu avail miss valu statist sens place within vector may reserv assign special valu na. gener oper becom na. motiv rule simpli specif oper incomplet result known henc avail 
+71: function is.na give logic vector size valu true correspond element 
+72: 3,na ind is.na notic logic express quit differ is.na sinc realli valu marker quantiti available. thu vector length whose valu logic express incomplet henc undecid 
+73: note second kind miss valu produc numer com- putat so-cal number nan values. exampl 0/0 chapter simpl manipul number vector inf inf give nan sinc result defin sensibl 
+74: summari is.na true nan values. differenti is.nan true nan 
+75: miss valu sometim print charact vector print without quot 
+76: 2.6 charact vector charact quantiti charact vector use frequent exampl plot label need denot sequenc charact delimit doubl quot charact e.g. x-valu new iter result 
+77: charact string enter use either match doubl singl quot print use doubl quot sometim without quot use c-style escap sequenc use escap charact enter print insid doubl quot enter use escap sequenc newlin tab backspac see quot full list 
+78: charact vector may concaten vector function exampl use emerg frequent 
+79: past function take arbitrari number argument concaten one one charact strings. number given among argument coerc charact string evid way way would printed. argument default separ result singl blank charact chang name argument sep string chang string possibl empti 
+80: exampl lab past sep make lab charact vector y10 note particularli recycl short list take place thu repeat time match sequenc 10.3 2.7 index vector select modifi subset data set subset element vector may select append name vector index vector squar brackets. gener express evalu vector may subset element similarli select append index vector squar bracket immedi express 
+81: index vector four distinct type 
+82: logic vector. case index vector recycl length vector element selected. valu correspond true index vector select correspond fals omitted. exampl is.na creat re-creat object contain non-miss valu order. note miss valu shorter also is.na creat object place valu vector correspond valu non-miss posit 
+83: past ... collaps join argument singl charact string put e.g. tool charact manipul see help sub substr 
+84: chapter simpl manipul number vector vector posit integr quantities. case valu index vector must lie set length correspond element vector select concaten order result. index vector length result length index vector. exampl sixth compon select first element assum length less also rep 1,2,2,1 time admittedli unlik thing produc charact vector length consist repeat four time 
+85: vector neg integr quantities. index vector specifi valu exclud rather included. thu give first five element 
+86: vector charact strings. possibl appli object name attribut identifi components. case sub-vector name vector may use way posit integr label item 
+87: fruit name fruit orang banana appl peach lunch fruit appl orang advantag alphanumer name often easier rememb numer indices. option particularli use connect data frame shall see later 
+88: index express also appear receiv end assign case assign oper perform element vector. express must form vector index_vector arbitrari express place vector name make much sens 
+89: exampl is.na replac miss valu zero effect ab 2.8 type object vector import type object sever other meet formal later section matric gener array multi-dimension gener vectors. fact vector index two indic print special ways. see chapter array matric page 
+90: factor provid compact way handl categor data. see chapter factor page list gener form vector variou element need type often vector lists. list provid conveni way return result statist computation. see section 6.1 list page 
+91: data frame matrix-lik structur column differ types. think data frame data matric one row per observ unit possibl chapter simpl manipul number vector numer categor variables. mani experi best describ data frame treatment categor respons numeric. see section 6.3 data frame page 
+92: function object store project workspace. provid simpl conveni way extend see chapter write function page 
+93: chapter object mode attribut object mode attribut 3.1 intrins attribut mode length entiti oper technic known objects. exampl vector numer real complex valu vector logic valu vector charact strings. known atom structur sinc compon type mode name numeric1 complex logic charact raw 
+94: vector must valu mode. thu given vector must un- ambigu either logic numer complex charact raw. appar except rule special valu list quantiti avail fact sever type note vector empti still mode. exampl empti charact string vector list charact empti numer vector numer 
+95: also oper object call list mode list. order sequenc list known recurs rather object individu mode atom structur sinc compon list right 
+96: recurs structur mode function expression. function object form part system along similar user written function discuss detail later. express object form advanc part discuss guid except indirectli discuss formula use model 
+97: mode object mean basic type fundament constituents. special case properti object. anoth properti everi object length. function mode object length object use find mode length defin structure2 
+98: properti object usual provid attribut object see section 3.3 get set attribut page 14. mode length also call intrins attribut object 
+99: exampl complex vector length 100 express mode charact string complex length 100 
+100: cater chang mode almost anywher could consid sensibl might exampl could put digit as.charact digit charact vector ... coercion chang mode reconstruct numer vector as.integ digit same.3 larg collect function form as.someth either coercion one mode anoth invest object attribut may alreadi possess. reader consult differ help file becom familiar 
+101: numer mode actual amalgam two distinct mode name integ doubl precis explain manual 
+102: note howev length object alway contain intrins use inform e.g. object function 
+103: gener coercion numer charact back exactli revers roundoff error charact represent 
+104: chapter object mode attribut 3.2 chang length object empti object may still mode. exampl numer make empti vector structur mode numeric. similarli charact empti charact vector on. object size creat new compon may ad simpli give index valu outsid previou range. thu make vector length first two compon point appli structur provid mode addit compon agre mode object first place 
+105: automat adjust length object use often exampl scan function input. see section 7.2 scan function page 31. convers truncat size object requir assign so. henc alpha object length alpha alpha make object length consist former compon even index. old indic retain course. retain first three valu length alpha vector extend miss valu way 
+106: 3.3 get set attribut function attribut object return list non-intrins attribut current defin object. function attr object name use select specif attribute. function rare use except rather special circumst new attribut creat particular purpos exampl associ creation date oper object. concept howev import 
+107: care exercis assign delet attribut sinc integr part object system use 
+108: use left hand side assign use either associ new attribut object chang exist one. exampl attr dim 10,10 allow treat 10-by-10 matrix 
+109: 3.4 class object object class report function class. simpl vector mode exampl numer logic charact list matrix array factor data.fram possibl valu 
+110: special attribut known class object use allow object-ori style4 program exampl object class data.fram print certain way plot function display graphic certain way so-cal gener function summari react argument way sensit class 
+111: remov temporarili effect class use function unclass exampl winter class data.fram differ style use formal class provid packag method 
+112: chapter object mode attribut winter print data frame form rather like matrix wherea unclass winter print ordinari list. rather special situat need use facil one learn come term idea class gener function gener function class discuss section 10.9 object orient page briefli 
+113: chapter order unord factor order unord factor factor vector object use specifi discret classif group compon vector length. provid order unord factors. real applic factor model formula see section 11.1.1 contrast page look specif exampl 
+114: 4.1 specif exampl suppos exampl sampl tax account state territori australia1 individu state origin specifi charact vector state mnemon state ta qld nsw nsw qld vic nsw vic qld qld vic qld nsw nsw act nsw vic vic act ta notic case charact vector sort mean sort alphabet order factor similarli creat use factor function statef factor state print function handl factor slightli differ object statef ta qld nsw nsw qld vic nsw vic qld qld ta vic qld nsw nsw level act nsw qld ta vic act nsw vic vic act find level factor function level use 
+115: level statef act nsw qld ta vic 4.2 function tappli rag array continu previou exampl suppos incom tax account anoth vector suitabl larg unit money incom calcul sampl mean incom state use special function tappli incmean tappli incom statef mean give mean vector compon label level act 44.500 57.333 55.500 53.600 55.000 60.500 56.000 52.250 ta vic nsw qld function tappli use appli function mean group compon first argument incom defin level second compon statef2 reader note eight state territori australia name australian capit territori new south wale northern territori queensland south australia tasmania victoria western australia 
+116: note tappli also work case second argument factor e.g. tappli incom state true quit function sinc argument coerc factor necessari use as.factor 
+117: chapter order unord factor separ vector structures. result structur length level attribut factor contain results. reader consult help document detail 
+118: suppos need calcul standard error state incom means. need write function calcul standard error given vector. sinc builtin function var calcul sampl varianc function simpl one liner specifi assign stderr function sqrt var /length write function consid later chapter write function page case unnecessari also builtin function assign standard error calcul incster tappli incom statef stderr valu calcul incster act 1.5 4.3102 4.5 4.1061 2.7386 0.5 5.244 2.6575 nsw qld ta vic exercis may care find usual confid limit state mean incomes. could use tappli length function find sampl size function find percentag point appropri distributions. could also investig facil t-tests. function tappli also use handl complic index vector multipl categories. exampl might wish split tax account state sex. howev simpl instanc one factor happen thought follows. valu vector collect group correspond distinct entri factor. function appli group individually. valu vector function result label level attribut factor 
+119: combin vector label factor exampl sometim call rag array sinc subclass size possibl irregular. subclass size index may done implicitli much effici see next section 
+120: 4.3 order factor level factor store alphabet order order specifi factor specifi explicitli 
+121: sometim level natur order want record want statist analysi make use of. order function creat order factor otherwis ident factor. purpos differ order unord factor former print show order level contrast gener fit linear model differ 
+122: chapter array matric array matric 5.1 array array consid multipli subscript collect data entri exampl numeric. allow simpl facil creat handl array particular special case matric 
+123: dimens vector vector non-neg integers. length array k-dimension e.g. matrix 2-dimension array. dimens index one valu given dimens vector 
+124: vector use array dimens vector dim attribut 
+125: suppos exampl vector 1500 elements. assign dim 3,5,100 give dim attribut allow treat 100 array 
+126: function matrix array avail simpler natur look assign shall see section 5.4 array function page 
+127: valu data vector give valu array order would occur fortran column major order first subscript move fastest last subscript slowest 
+128: exampl dimens vector array say 3,4,2 entri data vector hold order 1,1,1 2,1,1 ... 2,4,2 3,4,2 
+129: array one-dimension array usual treat way vector includ print except caus confus 
+130: 5.2 array indexing. subsect array individu element array may referenc give name array follow subscript squar bracket separ comma 
+131: gener subsect array may specifi give sequenc index vector place subscript howev index posit given empti index vector full rang subscript taken 
+132: continu previou exampl array dimens vector 4,2 data vector contain valu 2,1,1 2,2,1 2,3,1 2,4,1 2,1,2 2,2,2 2,3,2 2,4,2 order. stand entir array omit subscript entir use alon 
+133: array say dimens vector may referenc explicitli dim either side assign 
+134: also array name given one subscript index vector correspond valu data vector use case dimens vector ignored. case howev singl index vector array next discuss 
+135: chapter array matric 5.3 index matric well index vector subscript posit matrix may use singl index matrix order either assign vector quantiti irregular collect element array extract irregular collect vector 
+136: matrix exampl make process clear. case doubli index array index matrix may given consist two column mani row desired. entri index matrix row column indic doubli index array. suppos exampl array wish follow extract element 1,3 2,2 3,1 vector structur replac entri array zero case need subscript array follow exampl 
+137: array dim 4,5 gener array 
+138: array 3,3 dim 3,2 index array 
+139: extract element replac element zero 
+140: neg indic allow index matrices. zero valu allow row index matrix contain zero ignor row contain produc result 
+141: less trivial exampl suppos wish gener unreduc design matrix block design defin factor block level varieti level suppos plot experiment. could proceed follow matrix matrix cbind block cbind varieti cbind construct incid matrix say could use crossprod chapter array matric howev simpler direct way produc matrix use tabl tabl block varieti index matric must numer form matrix e.g. logic charact matrix suppli matrix treat index vector 
+142: 5.4 array function well give vector structur dim attribut array construct vector array function form array data_vector dim_vector exampl vector contain fewer number command array dim 3,4,2 would use set array size exactli result dim 3,4,2 howev shorter valu recycl begin make size see section 5.4.1 recycl rule page dim 3,4,2 would signal error mismatch length. extrem common exampl array 3,4,2 make array zero 
+143: point dim stand dimens vector 3,4,2 stand data vector empti subscript subscript stand entir array array 
+144: array may use arithmet express result array form element- by-el oper data vector. dim attribut operand gener need becom dimens vector result. similar array make similar array data vector result given element-by-el operations. howev precis rule concern mix array vector calcul consid littl care 
+145: 5.4.1 mix vector array arithmetic. recycl rule precis rule affect element element mix calcul vector array somewhat quirki hard find references. experi found follow reliabl guid express scan left right short vector operand extend recycl valu match size operand 
+146: long short vector array encount array must dim attribut error result 
+147: vector operand longer matrix array operand gener error array structur present error coercion vector precipit result array structur common dim attribut array operand 
+148: chapter array matric 5.5 outer product two array import oper array outer product two numer array outer product array whose dimens vector obtain concaten two dimens vector order import whose data vector got form possibl product element data vector outer product form special oper altern outer multipl function replac arbitrari function two variables. exampl wish evalu function co regular grid valu y-coordin defin vector respect could proceed follow function co outer particular outer product two ordinari vector doubli subscript array matrix rank notic outer product oper cours non- commutative. defin function consid chapter write function page 
+149: exampl determin single-digit matric artifici cute exampl consid determin matric entri non-neg integ rang digit 
+150: problem find determin possibl matric form repres frequenc valu occur high densiti plot. amount find probabl distribut determin digit chosen independ uniformli random 
+151: neat way use outer function twice outer tabl outer plot as.numer name type xlab determin ylab frequenc notic coercion name attribut frequenc tabl numer order recov rang determin values. obviou way problem loop discuss chapter loop condit execut page ineffici impract 
+152: also perhap surpris matric singular 
+153: 5.6 gener transpos array function aperm perm may use permut array argument perm must permut integ number subscript result function array size old dimens given perm becom new j-th dimension. easiest way think oper gener transposit matrices. inde matrix doubli subscript array given aperm 2,1 transpos special case simpler function avail could use 
+154: chapter array matric 5.7 matrix facil note matrix array two subscripts. howev import special case need separ discussion. contain mani oper function avail matrices. exampl matrix transpos function note function nrow ncol give number row column matrix respect 
+155: 5.7.1 matrix multipl oper use matrix multiplication. matrix may cours use n-vector context appropriate. convers vector occur matrix multipl express automat promot either row column vector whichev multipl coher possibl although alway unambigu possibl see later 
+156: exampl squar matric size matrix element element product matrix product. vector quadrat form.1 function crossprod form crossproduct mean crossprod oper efficient. second argument crossprod omit taken first 
+157: mean diag depend argument. diag vector give diagon matrix element vector diagon entries. hand diag matrix give vector main diagon entri convent use diag matlab. also somewhat confusingli singl numer valu diag ident matrix 5.7.2 linear equat invers solv linear equat invers matrix multiplication. given vector solut linear equat system. solv a,b solv system return accuraci loss note linear algebra formal denot invers comput solv rare needed. numer ineffici potenti unstabl comput solv instead solv a,b 
+158: quadrat form xta use multivari comput comput someth like2 solv a,x rather comput invers 
+159: note ambigu could mean either xxt column form. case smaller matrix seem implicitli interpret adopt scalar case result. matrix xxt may calcul either cbind rbind sinc result rbind cbind alway matrix. howev best way comput xxt crossprod respect 
+160: even better would form matrix squar root bbt find squar length solut perhap use choleski eigen decomposit 
+161: chapter array matric 5.7.3 eigenvalu eigenvector function eigen calcul eigenvalu eigenvector symmetr matrix sm. result function list two compon name valu vectors. assign eigen assign list ev. val vector eigenvalu vec matrix correspond eigenvectors. need eigenvalu could use assign eval eigen valu eval hold vector eigenvalu second compon discard express eigen use command two compon print names. larg matric better avoid comput eigenvector need use express eval eigen only.valu true valu 5.7.4 singular valu decomposit determin function svd take arbitrari matrix argument calcul singular valu decomposit consist matrix orthonorm column column space second matrix orthonorm column whose column space row space diagon matrix posit entri actual return vector diagon elements. result svd actual list three compon name evid mean fact squar hard see absdetm prod svd calcul absolut valu determin calcul need often varieti matric could defin function absdet function prod svd could use absdet anoth function. trivial potenti use exampl might like consid write function say calcul trace squar matrix. hint need use explicit loop. look diag function. builtin function det calcul determin includ sign anoth determin give sign modulu option log scale 5.7.5 least squar fit decomposit function lsfit return list give result least squar fit procedure. assign an lsfit give result least squar fit vector observ design matrix. see help facil detail also follow-up function ls.diag among thing regress diagnostics. note grand mean term automat in- clude need includ explicitli column note almost alway prefer use see section 11.2 linear model page lsfit regress model 
+162: anoth close relat function allies. consid follow assign chapter array matric xplu qr.coef xplu fit qr.fit xplu re qr.resid xplu comput orthogon project onto rang fit project onto orthogon complement re coeffici vector project essenti result matlab backslash oper 
+163: assum full column rank. redund discov remov found 
+164: altern older low-level way perform least squar calculations. although still use context would gener replac statist model featur discuss chapter statist model page 
+165: 5.8 form partit matric cbind rbind alreadi seen inform matric built vector matric function cbind rbind roughli cbind form matric bind togeth matric horizont column-wis rbind vertic row-wis 
+166: assign cbind arg_1 arg_2 arg_3 ... argument cbind must either vector length matric column size number rows. result matrix concaten argument arg arg form column 
+167: argument cbind vector may shorter column size matric present case cyclic extend match matrix column size length longest vector matric given 
+168: function rbind correspond oper rows. case vector argument possibl cyclic extend cours taken row vector 
+169: suppos number rows. combin column matrix togeth initi column use cbind result rbind cbind alway matrix status. henc cbind rbind possibl simplest way explicitli allow vector treat column row matrix respect 
+170: 5.9 concaten function array note wherea cbind rbind concaten function respect dim attribut basic function rather clear numer object dim dimnam attributes. occasion use right 
+171: offici way coerc array back simpl vector object use as.vector vec as.vector howev similar result achiev use one argument simpli side-effect vec slight differ two ultim choic larg matter style former prefer 
+172: chapter array matric 5.10 frequenc tabl factor recal factor defin partit groups. similarli pair factor defin two way cross classif on. function tabl allow frequenc tabl calcu- late equal length factors. factor argument result k-way array frequenc 
+173: suppos exampl statef factor give state code entri data vector. assign statefr tabl statef give statefr tabl frequenc state sample. frequenc order label level attribut factor. simpl case equival conveni statefr tappli statef statef length suppos incomef factor give suitabl defin incom class entri data vector exampl cut function factor cut incom break incomef calcul two-way tabl frequenc tabl incomef,statef statef incomef 35,45 45,55 55,65 65,75 act nsw qld ta vic extens higher-way frequenc tabl immedi 
+174: chapter list data frame list data frame 6.1 list list object consist order collect object known compon 
+175: particular need compon mode type exampl list could consist numer vector logic valu matrix complex vector charact array function on. simpl exampl make list lst list name fred wife mari no.children child.ag 4,7,9 compon alway number may alway refer such. thu lst name list four compon may individu refer lst lst lst lst lst vector subscript array lst first entri 
+176: lst list function length lst give number top level compon 
+177: compon list may also name case compon may refer either give compon name charact string place number doubl squar bracket conveni give express form name component_nam thing 
+178: use convent make easier get right compon forget number 
+179: simpl exampl given lst name lst string fred lst wife lst string mari lst child.ag lst number 
+180: addit one also use name list compon doubl squar bracket i.e. lst name lst name. especi use name compon extract store anoth variabl name lst import distinguish lst lst 
+181: ... oper use select singl element wherea ... gener subscript operator. thu former first object list lst name list name included. latter sublist list lst consist first entri only. name list name transfer sublist 
+182: name compon may abbrevi minimum number letter need identifi uniquely. thu lst coeffici may minim specifi lst coe lst covari lst cov 
+183: vector name fact simpli attribut list like may handl such. structur besid list may cours similarli given name attribut also 
+184: 6.2 construct modifi list new list may form exist object function list assign form chapter list data frame lst list name_1 object_1 ... name_m object_m set list lst compon use object object compon give name specifi argument name freeli chosen name omit compon number only. compon use form list copi form new list origin affect 
+185: list like subscript object extend specifi addit components. exampl lst list matrix mat 6.2.1 concaten list concaten function given list argument result object mode list also whose compon argument list join togeth sequenc 
+186: list.abc list.a list.b list.c recal vector object argument concaten function similarli join togeth argument singl vector structure. case attribut dim attribut discard 
+187: 6.3 data frame data frame list class data.fram restrict list may made data frame name compon must vector numer charact logic factor numer matric list data frame 
+188: matric list data frame provid mani variabl new data frame column element variabl respect 
+189: numer vector logic factor includ default1 charact vector coerc factor whose level uniqu valu appear vector 
+190: vector structur appear variabl data frame must length matrix structur must row size 
+191: data frame may mani purpos regard matrix column possibl differ mode attributes. may display matrix form row column extract use matrix index convent 
+192: 6.3.1 make data frame object satisfi restrict place column compon data frame may use form one use function data.fram account data.fram home statef loot incom shot incomef list whose compon conform restrict data frame may coerc data frame use function as.data.fram simplest way construct data frame scratch use read.tabl function read entir data frame extern file. discuss chapter read data file page 
+193: convers charact column factor overridden use stringsasfactor argument data.fram function 
+194: chapter list data frame 6.3.2 attach detach notat account home list compon alway conveni use facil would somehow make compon list data frame temporarili visibl variabl compon name without need quot list name explicitli time 
+195: attach function take databas list data frame argument. thu suppos lentil data frame three variabl lentil lentil lentil attach attach lentil place data frame search path posit provid variabl posit avail variabl data frame right point assign replac compon data frame rather mask anoth variabl work directori posit search path. make perman chang data frame simplest way resort notat lentil howev new valu compon visibl data frame detach attach 
+196: detach data frame use function detach precis statement detach search path entiti current posit thu present context variabl would longer visibl except list notat lentil on. entiti posit greater search path detach give number detach much safer alway use name exampl detach lentil detach lentil note list data frame attach posit attach copi origin object. alter attach valu via assign origin list data frame unchang 
+197: 6.3.3 work data frame use convent allow work mani differ problem comfort togeth work directori gather togeth variabl well defin separ problem data frame suitabl inform name work problem attach appropri data frame posit use work directori level oper quantiti temporari variabl leav problem add variabl wish keep futur refer data frame use form assign detach final remov unwant variabl work directori keep clean left-ov temporari variabl possibl 
+198: way quit simpl work mani problem directori variabl name exampl 
+199: 6.3.4 attach arbitrari list attach gener function allow directori data frame attach search path class object well. particular object mode list may attach way chapter list data frame attach any.old.list anyth attach detach detach posit number prefer- abli name 
+200: 6.3.5 manag search path function search show current search path use way keep track data frame list packag attach detached. initi give search .globalenv autoload packag base .globalenv workspace.2 lentil attach search .globalenv lentil autoload packag base see object use examin content posit search path 
+201: final detach data frame confirm remov search path 
+202: detach lentil search .globalenv autoload packag base see on-lin help autoload mean second term 
+203: chapter read data file read data file larg data object usual read valu extern file rather enter session keyboard. input facil simpl requir fairli strict even rather inflexible. clear presumpt design abl modifi input file use tool file editor perl1 fit requir gener simpl 
+204: variabl held mainli data frame strongli suggest entir data frame read directli read.tabl function. also primit input function scan call directli 
+205: detail import data also export data see data im- port/export manual 
+206: 7.1 read.tabl function read entir data frame directli extern file normal special form first line file name variabl data frame addit line file first item row label valu variabl 
+207: file one fewer item first line second arrang presum force. first line file read data frame might look follow 
+208: input file form name row label price 52.00 54.75 57.50 57.50 59.75 floor 111.0 128.0 101.0 131.0 93.0 area 830 710 1000 690 900 room age cent.heat 6.2 7.5 4.2 8.8 1.9 ye 
+209: default numer item except row label read numer variabl non-numer variabl cent.heat exampl factors. chang necessari 
+210: function read.tabl use read data frame directli housepric read.tabl houses.data often want omit includ row label directli use default labels. case file may omit row label column follow 
+211: input file form without row label floor 111.0 128.0 101.0 131.0 93.0 area 830 710 1000 690 900 room age cent.heat 6.2 7.5 4.2 8.8 1.9 ye price 52.00 54.75 57.50 57.50 59.75 
+212: unix util sed orawk use 
+213: chapter read data file data frame may read housepric read.tabl houses.data header true header true option specifi first line line head henc implic form file explicit row label given 
+214: 7.2 scan function suppos data vector equal length read parallel. suppos three vector first mode charact remain two mode numer file input.dat. first step use scan read three vector list follow inp scan input.dat list ,0,0 second argument dummi list structur establish mode three vector read. result held inp list whose compon three vector read in. separ data item three separ vector use assign like label inp inp inp conveni dummi list name compon case name use access vector read in. exampl inp scan input.dat list wish access variabl separ may either re-assign variabl work frame label inp inp inp list may attach posit search path see section 6.3.4 attach arbitrari list page 
+215: second argument singl valu list singl vector read compon must mode dummi valu 
+216: matrix scan light.dat ncol byrow true elabor input facil avail detail manual 
+217: 7.3 access builtin dataset around 100 dataset suppli packag dataset other avail packag includ recommend packag suppli see list dataset current avail use data dataset suppli avail directli name. howev mani packag still use obsolet convent data also use load dataset exampl data infert still use standard packag exampl case load object name. howev case load sever object see on-lin help object see expect 
+218: 7.3.1 load data packag access data particular packag use packag argument exampl data packag rpart data puromycin packag dataset packag attach librari dataset automat includ search 
+219: user-contribut packag rich sourc dataset 
+220: chapter read data file 7.4 edit data invok data frame matrix edit bring separ spreadsheet-lik environ editing. use make small chang data set read. command xnew edit xold allow edit data set xold complet chang object assign xnew. want alter origin dataset xold simplest way use fix xold equival xold edit xold 
+221: use xnew edit data.fram enter new data via spreadsheet interfac 
+222: chapter probabl distribut probabl distribut 8.1 set statist tabl one conveni use provid comprehens set statist tables. function provid evalu cumul distribut function probabl densiti function quantil function given smallest simul distribut 
+223: distribut beta binomi cauchi chi-squar exponenti gamma geometr hypergeometr log-norm logist neg binomi normal poisson sign rank student uniform weibul wilcoxon name beta binom cauchi chisq exp gamma geom hyper lnorm logi nbinom norm poi signrank unif weibul wilcox addit argument shape1 shape2 ncp size prob locat scale ncp rate df1 df2 ncp shape scale prob meanlog sdlog locat scale size prob mean lambda ncp min max shape scale prefix name given densiti cdf quantil function simul andom deviat first argument dxxx pxxx qxxx rxxx except rhyper rsignrank rwilcox quit case non-centr paramet ncp current avail see on-lin help detail 
+224: pxxx qxxx function logic argument lower.tail log.p dxxx one log. allow e.g. get cumul integr hazard function log pxxx ... lower.tail fals log.p true accur log-likelihood dxxx ... log true directli 
+225: addit function ptukey qtukey distribut student rang sampl normal distribut dmultinom rmultinom multinomi distribution. distribut avail contribut packag notabl suppdist 
+226: exampl 2-tail p-valu distribut -2.43 upper point distribut 0.01 lower.tail fals see on-lin help rng random-numb gener done 
+227: chapter probabl distribut 8.2 examin distribut set data given univari set data examin distribut larg number ways. simplest examin numbers. two slightli differ summari given summari fivenum display number stem stem leaf plot 
+228: attach faith summari erupt min. 1st qu. median 4.000 2.163 1.600 mean 3rd 4.454 3.488 max 5.100 fivenum erupt 1.6000 2.1585 4.0000 4.4585 5.1000 stem erupt decim point digit left 070355555588 000022233333335577777777888822335777888 00002223378800035778 0002335578023578 00228 080 2337 250077 0000823577 2333335582225577 0000003357788888002233555577778 03335555778800233333555577778 02222335557780000000023333357778888 0000233357700000023578 00000022335800333 0370 stem-and-leaf plot like histogram function hist plot histogram 
+229: hist erupt make bin smaller make plot densiti hist erupt seq 1.6 5.2 0.2 prob true line densiti erupt 0.1 rug erupt show actual data point eleg densiti plot made densiti ad line produc densiti example. bandwidth chosen trial-and-error default give chapter probabl distribut much smooth usual interest densiti better autom method bandwidth choic avail exampl give good result. plot empir cumul distribut function use function ecdf 
+230: plot ecdf erupt do.point fals vertic true distribut obvious far standard distribution. right-hand mode say erupt longer minut let fit normal distribut overlay fit cdf 
+231: long erupt erupt plot ecdf long do.point fals vertic true seq 5.4 0.01 line pnorm mean mean long sqrt var long lti quantile-quantil q-q plot help examin care 
+232: par pti qqnorm long qqline long arrang squar figur region histogram eruptionseruptionsrel frequency1.52.02.53.03.54.04.55.00.00.10.20.30.40.50.60.73.03.54.04.55.00.00.20.40.60.81.0ecdf long xfn chapter probabl distribut show reason fit shorter right tail one would expect normal distribution. let compar simul data distribut 250 qqnorm qqline usual random sampl show longer tail expect normal. make q-q plot gener distribut qqplot ppoint 250 xlab q-q plot dsn qqline final might want formal test agreement normal provid shapiro-wilk test shapiro.test long shapiro-wilk normal test data long 0.9793 p-valu 0.01052 kolmogorov-smirnov test ks.test long pnorm mean mean long sqrt var long one-sampl kolmogorov-smirnov test data long 0.0661 p-valu 0.4284 altern hypothesi two.sid note distribut theori valid estim paramet normal distribut sample. 8.3 one- two-sampl test far compar singl sampl normal distribution. much common oper compar aspect two samples. note classic test includ one use packag stat normal load 
+233: consid follow set data latent heat fusion ice cal/gm rice 1995 p.490 10123.03.54.04.55.0normal plottheoret quantilessampl quantil chapter probabl distribut method 79.98 80.04 80.02 80.04 80.03 80.03 80.04 79.97 80.05 80.03 80.02 80.00 80.02 method 80.02 79.94 79.98 79.97 79.97 80.03 79.95 79.97 boxplot provid simpl graphic comparison two sampl 
+234: scan 79.98 80.04 80.02 80.04 80.03 80.03 80.04 79.97 80.05 80.03 80.02 80.00 80.02 scan 80.02 79.94 79.98 79.97 79.97 80.03 79.95 79.97 boxplot indic first group tend give higher result second 
+235: test equal mean two exampl use unpair t-test t.test welch two sampl t-test data 3.2499 12.027 p-valu 0.00694 altern hypothesi true differ mean equal percent confid interv 0.01385526 0.07018320 sampl estim mean mean 80.02077 79.97875 indic signific differ assum normality. default function assum equal varianc two sampl contrast similar s-plu t.test function use test test equal varianc provid two sampl normal popul 
+236: var.test test compar two varianc 1279.9479.9679.9880.0080.0280.04 chapter probabl distribut data 0.5837 num denom altern hypothesi true ratio varianc equal percent confid interv p-valu 0.3938 0.1251097 2.1052687 sampl estim ratio varianc 0.5837405 show evid signific differ use classic t-test assum equal varianc 
+237: t.test var.equ true two sampl t-test data 3.4722 p-valu 0.002551 altern hypothesi true differ mean equal percent confid interv 0.01669058 0.06734788 sampl estim mean mean 80.02077 79.97875 test assum normal two samples. two-sampl wilcoxon mann- whitney test assum common continu distribut null hypothesi 
+238: wilcox.test wilcoxon rank sum test continu correct data p-valu 0.007497 altern hypothesi true locat shift equal warn messag comput exact p-valu tie wilcox.test note warn sever tie sampl suggest strongli data discret distribut probabl due round 
+239: sever way compar graphic two samples. alreadi seen pair boxplots. follow plot ecdf do.point fals vertic true xlim rang plot ecdf do.point fals vertic true add true show two empir cdf qqplot perform q-q plot two samples. kolmogorov-smirnov test maxim vertic distanc two ecdf assum common continu distribut ks.test two-sampl kolmogorov-smirnov test data 0.5962 p-valu 0.05919 altern hypothesi two-sid chapter probabl distribut warn messag comput correct p-valu tie ks.test chapter group loop condit execut group loop condit execut 9.1 group express express languag sens command type function express return result. even assign express whose result valu assign may use wherev express may use particular multipl assign possibl 
+240: command may group togeth brace expr_1 ... expr_m case valu group result last express group evaluated. sinc group also express may exampl includ parenthes use part even larger express 
+241: 9.2 control statement 9.2.1 condit execut statement languag avail condit construct form expr_1 expr_2 els expr_3 expr must evalu singl logic valu result entir express evid 
+242: short-circuit oper often use part condit statement. wherea appli element-wis vector appli vector length one evalu second argument necessari 
+243: vector version if/els construct ifels function. form ifels condit return vector length longest argument element condit true otherwis 
+244: 9.2.2 repetit execut loop repeat also loop construct form name expr_1 expr_2 name loop variable. expr vector express often sequenc like expr often group express sub-express written term dummi name. expr repeatedli evalu name rang valu vector result expr 
+245: exampl suppos ind vector class indic wish produc separ plot versu within classes. one possibl use coplot produc array plot correspond level factor. anoth way put plot one display follow split ind split ind length plot ablin lsfit note function split produc list vector obtain split larger vector accord class specifi factor. use function mostli use connect boxplots. see help facil details. discuss later use xyplot packag lattic 
+246: chapter group loop condit execut warn loop use code much less often compil languag code take whole object view like clearer faster 
+247: loop facil includ repeat expr statement condit expr statement 
+248: break statement use termin loop possibl abnormally. way termin repeat loop 
+249: next statement use discontinu one particular cycl skip next control statement often use connect function discuss chapter write function page exampl emerg 
+250: chapter write function write function seen inform along way languag allow user creat object mode function. true function store special intern form may use express on. process languag gain enorm power conveni eleg learn write use function one main way make use comfort product 
+251: emphas function suppli part system mean var postscript written thu differ materi user written function 
+252: function defin assign form name function arg_1 arg_2 ... express express express usual group express use argument arg calcul value. valu express valu return function 
+253: call function usual take form name expr_1 expr_2 ... may occur anywher function call legitim 
+254: 10.1 simpl exampl first exampl consid function calcul two sampl t-statist show step artifici exampl cours sinc simpler way achiev end 
+255: function defin follow twosam function length length yb1 mean var n1-1 n2-1 n2-2 tst yb1 yb2 /sqrt 1/n1 1/n2 tst yb2 mean var function defin could perform two sampl t-test use call tstat twosam data male data femal tstat second exampl consid function emul directli matlab backslash com- mand return coeffici orthogon project vector onto column space matrix ordinarili call least squar estim regress coefficients. would ordinarili done function howev sometim bit tricki use directli pay simpl function follow use safe 
+256: thu given vector matrix defin gener invers cid 
+257: bslash function qr.coef object creat may use statement regcoeff bslash xmat yvar 
+258: chapter write function classic function lsfit job quit well more1. turn use function qr.coef slightli counterintuit way part calculation. henc probabl valu part isol simpl use function go frequent use. may wish make matrix binari oper even conveni use 
+259: 10.2 defin new binari oper given bslash function differ name name one form anyth could use binari oper express rather function form. suppos exampl choos intern character. function definit would start function ... note use quot marks. function could use backslash symbol conveni choic present special problem context. matrix multipl oper outer product matrix oper exampl binari oper defin way 
+260: 10.3 name argument default first note section 2.3 gener regular sequenc page argument call function given name object form may given order. furthermor argument sequenc may begin unnam posit form specifi name argument posit argument 
+261: thu function fun1 defin fun1 function data data.fram graph limit function bodi omit function may invok sever way exampl an fun1 true an fun1 graph true limit an fun1 data limit graph true data.fram equival 
+262: mani case argument given commonli appropri default valu case may omit altogeth call default appropriate. exampl fun1 defin fun1 function data data.fram graph true limit ... could call an fun1 equival three case an fun1 limit chang one default 
+263: import note default may arbitrari express even involv argument function restrict constant simpl exampl 
+264: see also method describ chapter statist model page chapter write function 10.4 ... argument anoth frequent requir allow one function pass argument set anoth exampl mani graphic function use function par function like plot allow user pass graphic paramet par control graphic output. see section 12.4.1 par function page detail par function. done includ extra argument liter ... function may pass on. outlin exampl given 
+265: fun1 function data data.fram graph true limit ... omit statement graph par pch ... omiss less frequent function need refer compon ... express list ... evalu argument return name list ..1 ..2 etc. evalu one time ..n return unmatch argument 
+266: 10.5 assign within function note ordinari assign done within function local temporari lost exit function. thu assign affect valu argument call program 
+267: understand complet rule govern scope assign reader need familiar notion evalu frame. somewhat advanc though hardli difficult topic cover 
+268: global perman assign intend within function either su- perassign oper function assign used. see help document details. s-plu user awar differ semant discuss section 10.7 scope page 
+269: 10.6 advanc exampl 10.6.1 effici factor block design complet littl pedestrian exampl function consid find effi- cienci factor block design. aspect problem alreadi discuss section 5.3 index matric page 19. block design defin two factor say block level varieti level replic block size matric respect incid matrix effici factor defin eigenvalu matrix 1/2n 1/2 1/2n 1/2. one way write function given 
+270: bdeff function block varieti block as.factor block length level block varieti as.factor varieti length level varieti as.vector tabl block as.vector tabl varieti minor safeti move minor safeti move remov dim attr remov dim attr chapter write function tabl block varieti 1/sqrt rep 1/sqrt rep svd list eff blockcv varietycv numer slightli better work singular valu decomposit occas rather eigenvalu routin 
+271: result function list give effici factor first compon also block varieti canon contrast sinc sometim give addit use qualit inform 
+272: 10.6.2 drop name print array print purpos larg matric array often use print close block form without array name numbers. remov dimnam attribut achiev effect rather array must given dimnam attribut consist empti string exampl print matrix temp dimnam temp list rep nrow rep ncol temp temp much conveni done use function no.dimnam shown wrap around achiev result. also illustr effect use user function quit short 
+273: no.dimnam function remov dimens name array compact print list dim rep dimnam function defin array may print close format use no.dimnam particularli use larg integ array pattern real interest rather valu 
+274: 10.6.3 recurs numer integr function may recurs may defin function within themselves. note howev function inde variabl inherit call function higher evalu frame would search path 
+275: exampl show naiv way perform one-dimension numer integr integrand evalu end point rang middle. one-panel trapezium rule answer close enough two panel latter return valu otherwis process recurs appli panel. result adapt integr process concentr function evalu region integrand farthest linear. howev heavi overhead function competit algorithm integrand smooth difficult evalu 
+276: exampl also given partli littl puzzl program 
+277: chapter write function area function ep 1.0e-06 lim fun1 function ep lim fun function fun1 visibl insid area ab ep lim return els return fun ep lim fun fun ep lim fun fun1 ep lim fun1 10.7 scope discuss section somewhat technic part document howev detail one major differ s-plu 
+278: symbol occur bodi function divid three class formal paramet local variabl free variables. formal paramet function occur argument list function. valu determin process bind actual function argument formal parameters. local variabl whose valu determin evalu express bodi functions. variabl formal paramet local variabl call free variables. free variabl becom local variabl assign to. consid follow function definit 
+279: function print print print function formal paramet local variabl free variabl 
+280: free variabl bind resolv first look environ function created. call lexic scope. first defin function call cube 
+281: cube function function variabl function argument function. therefor free variabl scope rule must use ascertain valu associ it. static scope s-plu valu associ global variabl name lexic scope paramet function cube sinc activ bind variabl time function defined. differ evalu chapter write function evalu s-plu s-plu look global variabl call first look variabl call environ creat cube invok 
+282: first evalu cube error object found dump cube function evalu cube lexic scope also use give function mutabl state 
+283: follow exampl show use mimic bank account. function bank account need balanc total function make withdraw function make deposit function state current balance. achiev creat three function within account return list contain them. account invok take numer argument total return list contain three functions. function defin environ contain total access valu 
+284: special assign oper use chang valu associ total oper look back enclos environ environ contain symbol total find environ replac valu environ valu right hand side. global top-level environ reach without find symbol total variabl creat assign there. user creat global variabl assign valu right hand side it2. use function return valu anoth function special behavior describ occur 
+285: open.account function total list deposit function amount amount stop deposit must posit total total amount cat amount deposited. balanc total withdraw function amount amount total stop much money total total amount cat amount withdrawn. balanc total balanc function cat balanc total ross open.account 100 sens mimic behavior s-plu sinc s-plu oper alway creat assign global variabl 
+286: chapter write function robert open.account 200 ross withdraw ross balanc robert balanc ross deposit ross balanc ross withdraw 500 10.8 custom environ user custom environ sever differ ways. site initi file everi directori special initi file. final special function .first .last use 
+287: locat site initi file taken valu r_profil environ variable. variabl unset file rprofile.sit home subdirectori etc use file contain command want execut everi time start system. second person profil file name .rprofile3 place directory. invok directori file sourced. file give individu user control workspac allow differ startup procedur differ work directori .rprofil file found startup directori look .rprofil file user home directori use exist environ variabl r_profile_us set file point use instead .rprofil file 
+288: function name .first either two profil file .rdata imag special status. automat perform begin session may use initi environment. exampl definit exampl alter prompt set variou use thing taken grant rest session 
+289: thu sequenc file execut rprofile.sit user profil .rdata .first definit later file mask definit earlier file 
+290: .first function option prompt continu prompt custom number printout option digit length 999 graphic x11 plot charact par pch sourc file.path sys.getenv home mystuff.r librari mass person function attach packag similarli function .last defin normal execut end session 
+291: exampl given 
+292: .last function graphics.off cat past date nadio small safeti measur time lunch hidden unix 
+293: chapter write function 10.9 class gener function object orient class object determin treat known gener function put way round gener function perform task action argument specif class argument itself. argument lack class attribut class cater specif gener function question alway default action provid 
+294: exampl make thing clearer. class mechan offer user facil design write gener function special purposes. among gener function plot display object graphic summari summar analys variou type anova compar statist model 
+295: number gener function treat class specif way quit larg exampl function accommod fashion object class data.fram includ mean plot as.matrix summari current complet list got use method function method class data.fram convers number class gener function handl also quit larg exampl plot function default method variant object class data.fram densiti factor more. complet list got use method function method plot mani gener function function bodi quit short exampl coef function object ... usemethod coef presenc usemethod indic gener function. see method avail use method method coef coef.aov coef.nl coef.arima coef.summary.nl coef.default coef.listof non-vis function asterisk exampl six method none seen type name. read either getanywher coef.aov singl object match coef.aov found found follow place regist method coef namespac stat namespac stat valu function object ... object coef is.na chapter write function gets3method coef aov function object ... object coef is.na reader refer languag definit complet discuss mechan 
+296: chapter statist model statist model section presum reader familiar statist methodolog particular regress analysi analysi variance. later make rather ambiti presumpt name someth known gener linear model nonlinear regress 
+297: requir fit statist model suffici well defin make possibl construct gener tool appli broad spectrum problem 
+298: provid interlock suit facil make fit statist model simpl mention introduct basic output minim one need ask detail call extractor function 
+299: 11.1 defin statist model formula templat statist model linear regress model independ homoscedast error cid jxij nid matrix term would written respons vector model matrix design matrix column determin variables. often column one defin intercept term 
+300: exampl give formal specif exampl may use set pictur 
+301: suppos numer variabl matrix factor follow formula left side specifi statist model describ right 
+302: impli simpl linear regress model first implicit intercept term second explicit one 
+303: simpl linear regress origin without intercept term 
+304: log multipl regress transform variabl log implicit intercept term 
+305: poli x,2 polynomi regress degre first form use orthogon polyno- mial second use explicit power basi 
+306: poli x,2 multipl regress model matrix consist matrix well polynomi term degre 
+307: chapter statist model singl classif analysi varianc model class determin 
+308: singl classif analysi covari model class determin covari 
+309: a/b two factor non-addit model first two specifi cross classif second two specifi nest classification. abstract term four specifi model subspac 
+310: three factor experi model contain main effect two factor interact only. formula specifi model 
+311: a/x separ simpl linear regress model within level differ codings. last form produc explicit estim mani differ intercept slope level 
+312: error experi two treatment factor error strata determin factor exampl split plot experi whole plot henc also subplot determin factor 
+313: oper use defin model formula form ordinari linear model respons op_1 term_1 op_2 term_2 op_3 term_3 
+314: respons term vector matrix express evalu vector matrix defin respons variabl 
+315: oper either impli inclus exclus term model first option 
+316: either vector matrix express factor formula express consist factor vector matric connect formula oper 
+317: case term defin collect column either ad remov model matrix. stand intercept column default includ model matrix unless explicitli remov 
+318: formula oper similar effect wilkinson roger notat use program glim genstat. one inevit chang oper becom sinc period valid name charact 
+319: notat summar base chamber hasti 1992 p.29 model 
+320: m_1 m_2 includ 
+321: chapter statist model m_1 m_2 includ leav term 
+322: m_1 m_2 tensor product term factor subclass factor 
+323: m_1 m_2 similar m_1 m_2 differ code 
+324: m_1 m_2 m_1 m_2 m_1 m_2 
+325: m_1 m_2 m_1 m_2 m_1 
+326: term togeth interact order insul insid oper normal arithmet mean term appear model matrix 
+327: note insid parenthes usual enclos function argument oper normal arithmet meaning. function ident function use allow term model formula defin use arithmet oper 
+328: note particularli model formula specifi column model matrix specif paramet implicit. case context exampl specifi nonlinear model 
+329: 11.1.1 contrast need least idea model formula specifi column model matrix easi continu variabl provid one column model matrix intercept provid column one includ model 
+330: k-level factor answer differ unord order factors. unord factor column gener indic second kth level factor. thu implicit parameter contrast respons level first. order factor column orthogon polynomi omit constant term 
+331: although answer alreadi complic whole story. first intercept omit model contain factor term first term encod column give indic levels. second whole behavior chang option set contrasts. default set option contrast contr.treat contr.poli main reason mention differ default unord factor use helmert contrasts. need compar result textbook paper use s-plu need set option contrast contr.helmert contr.poli deliber differ treatment contrast default thought easier new- comer interpret 
+332: still finish contrast scheme use set term model use function contrast 
+333: yet consid interact term gener product column introduc compon term 
+334: although detail complic model formula normal gener model expert statistician would expect provid margin preserved. fit exampl model interact correspond main effect gener lead surpris result expert 
+335: chapter statist model 11.2 linear model basic function fit ordinari multipl model streamlin version call follow fitted.model formula data data.fram exampl fm2 data product would fit multipl regress model implicit intercept term 
+336: import technic option paramet data product specifi variabl need construct model come first product data frame case regardless whether data frame product attach search path 
+337: 11.3 gener function extract model inform valu fit model object technic list result class inform fit model display extract plot use gener function orient object class includ add1 alia anova coef devianc drop1 effect famili formula kappa label plot predict step print proj residu summari vcov brief descript commonli use one given 
+338: anova object_1 object_2 compar submodel outer model produc analysi varianc tabl 
+339: coef object extract regress coeffici matrix long form coeffici object 
+340: devianc object residu sum squar weight appropri 
+341: formula object extract model formula 
+342: plot object produc four plot show residu fit valu diagnost 
+343: predict object newdata data.fram data frame suppli must variabl specifi label original. valu vector matrix predict valu correspond determin variabl valu data.fram 
+344: print object print concis version object. often use implicitli 
+345: residu object extract matrix residu weight appropri short form resid object 
+346: step object select suitabl model ad drop term preserv hierarchies. model smallest valu aic akaik inform criterion discov stepwis search return 
+347: chapter statist model summari object print comprehens summari result regress analysi 
+348: vcov object return variance-covari matrix main paramet fit model object 
+349: 11.4 analysi varianc model comparison model fit function aov formula data data.fram oper simplest level similar way function gener function list tabl section 11.3 gener function extract model inform page appli 
+350: note addit aov allow analysi model multipl error strata split plot experi balanc incomplet block design recoveri inter-block information. model formula respons mean.formula error strata.formula specifi multi-stratum experi error strata defin strata.formula simplest case strata.formula simpli factor defin two strata experi name within level factor 
+351: exampl determin variabl factor model formula aov yield error farms/block data farm.data would typic use describ experi mean model three error strata name farm within farm block within block 
+352: 11.4.1 anova tabl note also analysi varianc tabl tabl sequenc fit model sum squar shown decreas residu sum squar result inclus term model place sequence. henc orthogon experi order inclus inconsequenti 
+353: multistratum experi procedur first project respons onto error strata sequenc fit mean model projection. detail see chamber hasti 1992 
+354: flexibl altern default full anova tabl compar two model directli use anova function 
+355: anova fitted.model.1 fitted.model.2 ... display anova tabl show differ fit model fit sequence. fit model compar would usual hierarch sequenc course. give differ inform default rather make easier comprehend control 
+356: 11.5 updat fit model updat function larg conveni function allow model fit differ one previous fit usual addit remov terms. form new.model updat old.model new.formula new.formula special name consist period use stand correspond part old model formula exampl fm05 data product fm6 updat fm05 smf6 updat fm6 sqrt chapter statist model would fit five variat multipl regress variabl presum data frame product fit addit model includ sixth regressor variabl fit variant model respons squar root transform appli 
+357: note especi data argument specifi origin call model fit function inform pass fit model object updat alli 
+358: name also use context slightli differ meaning. exampl fmfull data product would fit model respons regressor variabl variabl data frame product 
+359: function explor increment sequenc model add1 drop1 step name give good clue purpos full detail see on-lin help 
+360: 11.6 gener linear model gener linear model develop linear model accommod non-norm respons distribut transform linear clean straightforward way. gener linear model may describ term follow sequenc assumpt respons interest stimulu variabl whose valu influenc distribut respons 
+361: stimulu variabl influenc distribut singl linear function 
+362: linear function call linear predictor usual written 1x1 2x2 pxp henc influenc distribut 
+363: distribut form cid cid exp scale paramet possibl known constant observ repres prior weight assum known possibl vari observ mean assum distribut determin mean possibl scale paramet well 
+364: mean smooth invert function linear predictor cid invers function cid call link function 
+365: assumpt loos enough encompass wide class model use statist practic tight enough allow develop unifi methodolog estim infer least approximately. reader refer current refer work subject full detail mccullagh nelder 1989 dobson 1990 
+366: chapter statist model 11.6.1 famili class gener linear model handl facil suppli includ gaussian binomi poisson invers gaussian gamma respons distribut also quasi-likelihood model respons distribut explicitli specified. latter case varianc function must specifi function mean case function impli respons distribut 
+367: respons distribut admit varieti link function connect mean linear predictor. automat avail shown follow tabl famili name binomi gaussian gamma inverse.gaussian poisson quasi link function logit probit log cloglog ident log invers ident invers log 1/mu ident invers log ident log sqrt logit probit cloglog ident invers log 1/mu sqrt combin respons distribut link function variou piec infor- mation need carri model exercis call famili gener linear model 
+368: 11.6.2 glm function sinc distribut respons depend stimulu variabl singl linear function mechan use linear model still use specifi linear part gener model. famili specifi differ way 
+369: function fit gener linear model glm use form fitted.model glm formula famili family.gener data data.fram new featur family.gener instrument famili described. name function gener list function express togeth defin control model estim process. although may seem littl complic first sight use quit simpl 
+370: name standard suppli famili gener given famili name tabl section 11.6.1 famili page 57. choic link name link may also suppli famili name parenthes parameter. case quasi famili varianc function may also specifi way 
+371: exampl make process clear 
+372: gaussian famili call glm famili gaussian data sale achiev result data sale much less efficiently. note gaussian famili automat provid choic link paramet allow problem requir gaussian famili nonstandard link usual achiev quasi famili shall see later 
+373: binomi famili consid small artifici exampl silvey 1970 
+374: chapter statist model aegean island kalytho male inhabit suffer congenit eye diseas effect becom mark increas age. sampl island male variou age test blind result recorded. data shown age no. test no. blind problem consid fit logist probit model data estim model ld50 age chanc blind male inhabit 
+375: number blind age number test model form probit case standard normal distribut function logit case default ez/ case ld50 ld50 point argument distribut function zero 
+376: first step set data data frame kalytho data.fram 20,35,45,55,70 rep 50,5 6,17,26,37,44 fit binomi model use glm three possibl respons respons vector assum hold binari data must 0/1 vector respons two-column matrix assum first column hold number success trial second hold number failur 
+377: respons factor first level taken failur level success 
+378: need second convent add matrix data frame kalytho ymat cbind kalytho kalytho kalytho fit model use fmp glm ymat famili binomi link probit data kalytho fml glm ymat famili binomi data kalytho sinc logit link default paramet may omit second call. see result fit could use summari fmp summari fml model fit well. find ld50 estim use simpl function ld50 function ldp ld50 coef fmp ldl ld50 coef fml ldp ldl actual estim data 43.663 year 43.601 year respect 
+379: poisson model poisson famili default link log practic major use famili fit surrog poisson log-linear model frequenc data whose actual distribut often multinomial. larg import subject discuss here. even form major part use non-gaussian gener model overal 
+380: occasion genuin poisson data aris practic past often analyz gaussian data either log square-root transformation. grace altern latter poisson gener linear model may fit follow exampl chapter statist model fmod glm famili poisson link sqrt data worm.count quasi-likelihood model famili varianc respons depend mean scale paramet multiplier. form depend varianc mean characterist respons distribut exampl poisson distribut var 
+381: quasi-likelihood estim infer precis respons distribut specifi rather link function form varianc function depend mean. sinc quasi-likelihood estim use formal ident techniqu gaussian distribut famili provid way fit gaussian model non-standard link function varianc function incident 
+382: exampl consid fit non-linear regress may written altern 1z1 1x1 2x2 z2/z1 1/z1 suppos suitabl data frame set could fit non-linear regress nlfit glm famili quasi link invers varianc constant data biochem reader refer manual help document inform need 
+383: 11.7 nonlinear least squar maximum likelihood model certain form nonlinear model fit gener linear model glm major case approach nonlinear curv fit problem one nonlinear optimization. nonlinear optim routin optim nlm nlminb provid function s-plu nlminb seek paramet valu minim index lack-of-fit tri variou paramet valu iteratively. unlik linear regress exampl guarante procedur converg satisfactori estimates. method requir initi guess paramet valu tri converg may depend critic upon qualiti start valu 
+384: 11.7.1 least squar one way fit nonlinear model minim sum squar error sse residuals. method make sens observ error could plausibl arisen normal distribut 
+385: exampl bate watt 1988 page 51. data 0.02 0.02 0.06 0.06 0.11 0.11 0.22 0.22 0.56 0.56 1.10 1.10 107 123 139 159 152 191 201 207 200 fit criterion minim chapter statist model function sum order fit need initi estim parameters. one way find sensibl start valu plot data guess paramet valu superimpos model curv use valu 
+386: plot xfit seq .02 1.1 .05 yfit 200 xfit/ 0.1 xfit line spline xfit yfit could better start valu 200 0.1 seem adequate. fit nlm 200 0.1 hessian true fit minimum sse estim least squar estim parameters. obtain approxim standard error estim sqrt diag minimum/ length solv hessian subtract line repres number parameters. confid interv would paramet estim 1.96 se. superimpos least squar fit new plot plot xfit seq .02 1.1 .05 yfit 212.68384222 xfit/ 0.06412146 xfit line spline xfit yfit standard packag stat provid much extens facil fit non-linear model least squares. model fit michaelis-menten model use data.fram fit nl ssmicmen fit nonlinear regress model model ssmicmen data 212.68370711 0.06412123 residu sum-of-squar 1195.449 summari fit formula ssmicmen paramet estim std. error valu 2.127e 6.947e 30.615 3.24e-11 7.743 1.57e-05 6.412e-02 8.281e-03 residu standard error 10.93 degre freedom correl paramet estim 0.7651 11.7.2 maximum likelihood maximum likelihood method nonlinear model fit appli even error normal. method find paramet valu maxim log likelihood chapter statist model equival minim neg log-likelihood. exampl dobson 1990 pp. 108 111. exampl fit logist model dose-respons data clearli could also fit glm data 1.6907 1.7242 1.7552 1.7842 1.8113 1.8369 1.8610 1.8839 neg log-likelihood minim function sum log exp pick sensibl start valu fit log choos nlm -50,20 hessian true fit minimum neg log-likelihood estim maxi- mum likelihood estim parameters. obtain approxim se estim sqrt diag solv hessian confid interv would paramet estim 1.96 
+387: 11.8 non-standard model conclud chapter brief mention facil avail special regress data analysi problem mix models. recommend nlme packag provid function lme nlme linear non-linear mixed-effect model linear non-linear regress coeffici correspond random effects. function make heavi use formula specifi model local approxim regressions. loess function fit nonparametr regress use local weight regression. regress use highlight trend messi data data reduct give insight larg data set function loess standard packag stat togeth code project pursuit regress robust regression. sever function avail fit regress model way resist influenc extrem outlier data. function lq rec- ommend packag mass provid state-of-art algorithm highly-resist fits. less resist statist effici method avail packag exampl function rlm packag mass 
+388: addit models. techniqu aim construct regress function smooth addit function determin variabl usual one determin variabl function ava ace packag acepack function bruto mar packag mda provid exampl techniqu user-contribut packag extens gener addit model implement user-contribut packag gam mgcv tree-bas models. rather seek explicit global linear model predict interpret tree-bas model seek bifurc data recurs critic point determin variabl order partit data ultim group homogen possibl within heterogen possibl between. result often lead insight data analysi method tend yield model specifi ordinari linear model form. model fit function tree mani gener function plot text well adapt display result tree-bas model fit graphic way 
+389: chapter statist model tree model avail via user-contribut packag rpart tree 
+390: chapter graphic procedur graphic procedur graphic facil import extrem versatil compon environ possibl use facil display wide varieti statist graph also build entir new type graph 
+391: graphic facil use interact batch mode case interact use productive. interact use also easi startup time initi graphic devic driver open special graphic window display interact graphics. although done automat may use know command use x11 unix window window quartz new devic alway open dev.new 
+392: devic driver run plot command use produc varieti graphic display creat entir new kind display 
+393: plot command divid three basic group high-level plot function creat new plot graphic devic possibl axe label titl 
+394: low-level plot function add inform exist plot extra point line label 
+395: interact graphic function allow interact add inform extract infor- mation exist plot use point devic mous 
+396: addit maintain list graphic paramet manipul custom plot 
+397: manual describ known base graphics. separ graphic sub- system packag grid coexist base power harder use. recommend packag lattic build grid provid way produc multi-panel plot akin trelli system 
+398: 12.1 high-level plot command high-level plot function design gener complet plot data pass ar- gument function. appropri axe label titl automat gener unless request otherwise. high-level plot command alway start new plot eras current plot necessari 
+399: 12.1.1 plot function one frequent use plot function plot function. gener function type plot produc depend type class first argument 
+400: plot plot plot plot plot vector plot produc scatterplot effect produc suppli one argument second form either list contain two element two-column matrix 
+401: time seri produc time-seri plot. numer vector produc plot valu vector index vector. complex vector produc plot imaginari versu real part vector element 
+402: factor object numer vector. first form gener bar plot second form produc boxplot level 
+403: chapter graphic procedur plot plot expr plot expr data frame object expr list object name separ e.g. first two form produc distribut plot variabl data frame first form number name object second form third form plot everi object name expr 
+404: 12.1.2 display multivari data provid two use function repres multivari data. numer matrix data frame command pair produc pairwis scatterplot matrix variabl defin column everi column plot everi column result plot arrang matrix plot scale constant row column matrix 
+405: three four variabl involv coplot may enlightening. numer vector numer vector factor object length command coplot factor produc number scatterplot given valu simpli mean plot everi level numer divid number condit interv interv plot valu within interval. number posit interv control given.valu argument coplot function co.interv use select intervals. also use two given variabl command like coplot produc scatterplot everi joint condit interv 
+406: coplot pair function take argument panel use custom type plot appear panel. default point produc scatterplot suppli low-level graphic function two vector valu panel produc type plot wish. exampl panel function use coplot panel.smooth 
+407: 12.1.3 display graphic high-level graphic function produc differ type plots. exampl qqnorm qqline qqplot distribution-comparison plots. first form plot numer vector expect normal order score normal score plot second add straight line plot draw line distribut data quartil third form plot quantil compar respect distribut 
+408: hist hist nclass hist break ... produc histogram numer vector sensibl number class usual chosen recommend given nclass argument altern breakpoint specifi exactli break argument 
+409: chapter graphic procedur probabl true argument given bar repres rel frequenc divid bin width instead count 
+410: dotchart ... construct dotchart data dotchart y-axi give label data x-axi give value. exampl allow easi visual select data entri valu lie specifi rang 
+411: imag ... contour ... persp ... plot three variables. imag plot draw grid rectangl use differ colour repres valu contour plot draw contour line repres valu persp plot draw surfac 
+412: 12.1.4 argument high-level plot function number argument may pass high-level graphic function follow add true forc function act low-level graphic function superimpos plot current plot function 
+413: axe fals suppress gener axe use ad custom axe axi function. default axe true mean includ axe 
+414: log log log caus axe logarithmic. work mani type plot 
+415: type type argument control type plot produc follow type plot individu point default type plot line type plot point connect line type plot point overlaid line type plot vertic line point zero axi high-dens type type step-funct plots. first form top vertic defin point second bottom 
+416: type plot all. howev axe still drawn default coordin system set accord data. ideal creat plot subsequ low-level graphic function 
+417: xlab string ylab string axi label axes. use argument chang default label usual name object use call high-level plot function 
+418: main string figur titl place top plot larg font 
+419: sub string sub-titl place x-axi smaller font 
+420: chapter graphic procedur 12.2 low-level plot command sometim high-level plot function produc exactli kind plot desir case low-level plot command use add extra inform point line text current plot 
+421: use low-level plot function point line add point connect line current plot. plot type argument also pass function default point line text label ... add text plot point given normal label integ charact vector case label plot point default length note function often use sequenc plot type text name graphic paramet type suppress point set axe text function suppli special charact specifi charact vector name point 
+422: ablin ablin ablin ablin lm.obj add line slope intercept current plot. may use specifi y-coordin height horizont line across plot similarli x-coordin vertic lines. also lm.obj may list coeffici compon length result model-fit function taken intercept slope order 
+423: polygon ... draw polygon defin order vertic option shade hatch line fill graphic devic allow fill figur 
+424: legend legend ... add legend current plot specifi position. plot charact line style color etc. identifi label charact vector legend. least one argument vector length legend corre- spond valu plot unit must also given follow legend fill color fill box legend col color point line drawn legend lti line style legend lwd line width legend pch plot charact charact vector chapter graphic procedur titl main sub add titl main top current plot larg font option sub-titl sub bottom smaller font 
+425: axi side ... add axi current plot side given first argument count clockwis bottom. argument control posit axi within besid plot tick posit labels. use ad custom axe call plot axe fals argument 
+426: low-level plot function usual requir posit inform e.g. co- ordin determin place new plot elements. coordin given term user coordin defin previou high-level graphic command chosen base suppli data 
+427: argument requir also suffici suppli singl argument list element name similarli matrix two column also valid input way function locat see may use specifi posit plot interact 
+428: 12.2.1 mathemat annot case use add mathemat symbol formula plot. achiev specifi express rather charact string one text mtext axi title. exampl follow code draw formula binomi probabl function text express past bgroup atop n-x inform includ full list featur avail obtain within use command help plotmath exampl plotmath demo plotmath 12.2.2 hershey vector font possibl specifi hershey vector font render text use text contour functions. three reason use hershey font hershey font produc better output especi comput screen rotat and/or small text 
+429: hershey font provid certain symbol may avail standard fonts. particular zodiac sign cartograph symbol astronom symbol 
+430: hershey font provid cyril japanes kana kanji charact 
+431: inform includ tabl hershey charact obtain within use command help hershey demo hershey help japanes demo japanes 12.3 interact graphic also provid function allow user extract add inform plot use mouse. simplest locat function chapter graphic procedur locat type wait user select locat current plot use left mous button continu default 512 point select anoth mous button pressed. type argument allow plot select point effect high-level graphic command default plot locat return locat point select list two compon 
+432: locat usual call argument 
+433: particularli use interact select posit graphic element legend label difficult calcul advanc graphic placed. exampl place inform text near outli point command text locat outlier adj may useful. locat ignor current devic postscript support interact pointing. identifi label allow user highlight point defin use left mous button plot correspond compon label nearbi index number point label absent return indic select point anoth button press 
+434: sometim want identifi particular point plot rather positions. exampl may wish user select observ interest graphic display manipul observ way. given number coordin two numer vector could use identifi function follow plot identifi identifi function perform plot simpli allow user move mous pointer click left mous button near point. point near mous pointer mark index number posit x/i vector plot nearby. altern could use inform string case name highlight use label argument identifi disabl mark altogeth plot fals argument. process termin see identifi return indic select point use indic extract select point origin vector 
+435: 12.4 use graphic paramet creat graphic particularli present public purpos default alway produc exactli required. howev custom almost everi aspect display use graphic parameters. maintain list larg number graphic paramet control thing line style color figur arrang text justifica- tion among mani others. everi graphic paramet name col control color valu color number example. separ list graphic paramet maintain activ devic devic default set paramet initialized. graphic paramet set two way either perman affect graphic function access current devic temporarili affect singl graphic function call 
+436: 12.4.1 perman chang par function par function use access modifi list graphic paramet current graphic devic 
+437: chapter graphic procedur par without argument return list graphic paramet valu current devic 
+438: par col lti charact vector argument return name graphic paramet list. par col lti name argument singl list argument set valu name graphic paramet return origin valu paramet list 
+439: set graphic paramet par function chang valu paramet perman sens futur call graphic function current devic affect new value. think set graphic paramet way set default valu paramet use graphic function unless altern valu given 
+440: note call par alway affect global valu graphic paramet even par call within function. often undesir behavior usual want set graphic paramet plot restor origin valu affect user session. restor initi valu save result par make chang restor initi valu plot complet 
+441: oldpar par col lti plot command 
+442: par oldpar save restor settable1 graphic paramet use oldpar par no.readonli true plot command 
+443: par oldpar 12.4.2 temporari chang argument graphic function graphic paramet may also pass almost graphic function name argument effect pass argument par function except chang last durat function call. exampl plot pch produc scatterplot use plu sign plot charact without chang default plot charact futur plot 
+444: unfortun implement entir consist sometim necessari set reset graphic paramet use par 
+445: 12.5 graphic paramet list follow section detail mani commonly-us graphic parameters. help document par function provid concis summari provid somewhat detail altern 
+446: graphic paramet present follow form name valu descript paramet effect. name name paramet argument name use call par graphic function. valu typic valu might use set paramet 
+447: note axe graphic paramet argument plot method see xaxt yaxt 
+448: graphic paramet size current devic inform 
+449: chapter graphic procedur 12.5.1 graphic element plot made point line text polygon fill regions. graphic paramet exist control graphic element drawn follow pch charact use plot points. default vari graphic driver usual plot point tend appear slightli appropri posit unless use plot charact produc center point 
+450: pch pch given integ inclus special plot symbol produced. see symbol use command legend locat as.charact pch may appear duplic earlier symbol colour differ way see help point exampl 
+451: addit pch charact number rang 255 repres charact current font 
+452: line types. altern line style support graphic devic vari line type alway solid line line type alway invis- ibl line type onward dot dash line combin 
+453: line widths. desir width line multipl standard line width affect axi line well line drawn line etc. devic support restrict width use 
+454: lti lwd col color use point line text fill region images. number current palett see palett name colour 
+455: col.axi col.lab col.main col.sub font color use axi annot label main sub-titl re- spectiv 
+456: integ specifi font use text possibl devic driver arrang correspond plain text bold face ital bold ital symbol font includ greek letter 
+457: font.axi font.lab font.main font.sub font use axi annot label main sub-titl respec- tive 
+458: adj -0.1 justif text rel plot position. mean left justifi mean right justifi 0.5 mean center horizont plot position. actual valu proport text appear left plot posit valu -0.1 leav gap text width text plot posit 
+459: cex 1.5 charact expansion. valu desir size text charact includ plot charact rel default text size 
+460: chapter graphic procedur cex.axi cex.lab cex.main cex.sub charact expans use axi annot label main sub-titl respect 
+461: 12.5.2 axe tick mark mani high-level plot axe construct axe low-level axi graphic function. axe three main compon axi line line style control lti graphic paramet tick mark mark unit divis along axi line tick label mark units. compon custom follow graphic paramet 
+462: lab first two number desir number tick interv axe respectively. third number desir length axi label charact includ decim point. choos too-smal valu paramet may result tick label round number la orient axi labels. mean alway parallel axi mean alway horizon- tal mean alway perpendicular axi 
+463: mgp posit axi components. first compon distanc axi label axi posit text lines. second compon distanc tick label final compon distanc axi posit axi line usual zero posit number measur outsid plot region neg number insid 
+464: tck 0.01 length tick mark fraction size plot region. tck small less 0.5 tick mark axe forc size. valu give grid lines. neg valu give tick mark outsid plot region. use tck 0.01 mgp 1,-1.5,0 intern tick mark 
+465: xax yax axi style axe respectively. style intern default tick mark alway fall within rang data howev style leav small amount space edges. style implement 12.5.3 figur margin singl plot known figur compris plot region surround margin possibl contain axi label titl etc. usual bound axe 
+466: chapter graphic procedur typic figur graphic paramet control figur layout includ mai 0.5 0.5 width bottom left top right margin respect measur inch 
+467: mar similar mai except measur unit text line 
+468: mar mai equival sens set one chang valu other. default valu chosen paramet often larg right-hand margin rare need neither top margin titl used. bottom left margin must larg enough accommod axi tick labels. furthermor default chosen without regard size devic surfac exampl use postscript driver height argument result plot margin unless mar mai set explicitly. multipl figur use see margin reduc howev may enough mani figur share page 
+469: 3.0 1.50.01.53.0 3.0 1.50.01.53.0plot regionmai mai margin mar chapter graphic procedur 12.5.4 multipl figur environ allow creat array figur singl page. figur margin array figur option surround outer margin shown follow figur 
+470: graphic paramet relat multipl figur follow mfcol mfrow set size multipl figur array. first valu number row second number columns. differ two paramet set mfcol caus figur fill column mfrow fill row layout figur could creat set mfrow 3,2 figur show page four plot drawn set either reduc base size symbol text control par cex pointsiz devic layout exactli two row column base size reduc factor 0.83 three either row column reduct factor 0.66 
+471: mfg posit current figur multipl figur environment. first two number row column current figur last two number row column multipl figur array. set paramet jump figur array. even use differ valu last two number true valu unequally-s figur page 
+472: fig /10 posit current figur page. valu posit left right bottom top edg respect percentag page measur bottom left corner. exampl valu would figur bottom right page. set paramet arbitrari posit figur within page. want add figur current page use new true well unlik 
+473: oma omi 0.8 size outer margins. like mar mai first measur text line second inch start bottom margin work clockwis 
+474: mfg 3,2,3,2 omi omi mfrow 3,2 oma chapter graphic procedur outer margin particularli use page-wis titl etc. text ad outer margin mtext function argument outer true. outer margin default howev must creat explicitli use oma omi 
+475: complic arrang multipl figur produc split.screen layout function well grid lattic packag 
+476: 12.6 devic driver gener graphic vari level qualiti almost type display print device. begin howev need inform type devic deal with. done start devic driver. purpos devic driver convert graphic instruct draw line exampl form particular devic understand 
+477: devic driver start call devic driver function. one function everi devic driver type help devic list all. exampl issu command postscript caus futur graphic output sent printer postscript format. commonly- use devic driver x11 use x11 window system unix-alik window use window quartz use postscript pdf png jpeg print postscript printer creat postscript graphic file 
+478: produc pdf file also includ pdf file 
+479: produc bitmap png file. alway avail see help page. produc bitmap jpeg file best use imag plots. alway avail see help page. finish devic sure termin devic driver issu command dev.off ensur devic finish cleanli exampl case hardcopi devic ensur everi page complet sent printer. happen automat normal end session. 12.6.1 postscript diagram typeset document pass file argument postscript devic driver function may store graphic postscript format file choice. plot landscap orient unless horizont fals argument given control size graphic width height argument plot scale appropri fit dimensions. exampl command postscript file.p horizont fals height pointsiz produc file contain postscript code figur five inch high perhap inclus document. import note file name command alreadi exist overwritten. case even file creat earlier session 
+480: chapter graphic procedur mani usag postscript output incorpor figur anoth document. work best encapsul postscript produc alway produc conform output mark output onefil fals argument supplied. unusu notat stem s-compat realli mean output singl page part epsf specif thu produc plot inclus use someth like postscript plot1.ep horizont fals onefil fals height width pointsiz 12.6.2 multipl graphic devic advanc use often use sever graphic devic use time cours one graphic devic accept graphic command one time known current device. multipl devic open form number sequenc name give kind devic posit 
+481: main command use oper multipl devic mean follow x11 unix window win.print win.metafil window quartz postscript pdf png jpeg tiff bitmap 
+482: dev.list dev.next dev.prev new call devic driver function open new graphic devic thu extend one devic list. devic becom current devic graphic output sent 
+483: return number name activ devices. devic posit list alway null devic accept graphic command 
+484: return number name graphic devic next previou current devic respect 
+485: dev.set use chang current graphic devic one posit devic list. return number label devic 
+486: dev.off termin graphic devic point devic list. devic postscript devic either print file immedi correctli complet file later print depend devic initi 
+487: chapter graphic procedur dev.copi devic ... dev.print devic ... make copi devic devic devic function postscript extra argument need specifi ... dev.print similar copi devic immedi close end action print hardcopi immedi perform 
+488: graphics.off termin graphic devic list except null devic 
+489: 12.7 dynam graphic builtin capabl dynam interact graphic e.g. rotat point cloud brush interact highlight points. howev extens dynam graphic facil avail system ggobi swayn cook buja avail http //www.ggobi.org/ access via packag rggobi describ http //www.ggobi.org/ rggobi 
+490: also packag rgl provid way interact plot exampl surfac 
+491: chapter packag packag function dataset store packages. packag load content available. done effici full list would take memori would take longer search subset aid packag develop protect name clash code. process develop packag describ section creat packag write extensions. describ user point view 
+492: see packag instal site issu command librari arguments. load particular packag e.g. boot packag contain function davison hinkley 1997 use command like librari boot user connect internet use install.packag update.packag function avail packag menu window gui see section instal packag instal administr instal updat packag 
+493: see packag current load use search display search list. packag may load avail search list see section 13.3 namespac page includ list given loadednamespac see list avail help topic instal packag use help.start start html help system navig packag list refer section 
+494: 13.1 standard packag standard base packag consid part sourc code. contain basic function allow work dataset standard statist graphic function describ manual. automat avail installation. see section packag faq complet list 
+495: 13.2 contribut packag cran thousand contribut packag written mani differ authors. packag implement special statist method other give access data hard- ware other design complement textbooks. recommend packag distribut everi binari distribut avail download cran http //cran.r-project.org/ mirror repositori bioconductor http //www.bioconductor.org/ omegahat http //www.omegahat.org/ faq contain list cran packag current time releas collect avail packag chang frequent 
+496: 13.3 namespac packag namespac sinc 2.14.0. namespac three thing allow packag writer hide function data meant intern use prevent function break user packag writer pick name clash one packag provid way refer object within particular packag 
+497: chapter packag exampl transpos function user might defin function name namespac prevent user definit take preced break everi function tri transpos matrix 
+498: two oper work namespaces. double-colon oper select definit particular namespac exampl transpos function alway avail base defin base package. function export packag retriev way 
+499: triple-colon oper may seen place code act like double-colon oper also allow access hidden objects. user like use getanywher function search multipl packag 
+500: packag often inter-depend load one may caus other automat loaded. colon oper describ also caus automat load associ package. packag namespac load automat ad search list 
+501: chapter facil facil quit extens facil access run allow use script languag abil much use exampl instal packag 
+502: script need work across platform consider effort gone make script facil platform-independ feasibl 
+503: 14.1 file directori mani function manipul file directories. pointer commonli use one 
+504: creat empti file directori use file.cr create.dir 
+505: analogu posix util touch mkdir. temporari file directori session directori see tempfil 
+506: file remov either file.remov unlink latter remov directori tree 
+507: directori list use list.fil also avail dir list.dirs. select file use regular express select wildcard use sys.glob 
+508: mani type inform filepath includ exampl file directori found file.info 
+509: sever way find file exist file exist filesystem visibl current user function file.exist file.access file_test variou version test file_test version posix test command familiar shell script 
+510: function file.copi analogu posix command 
+511: choos file done interact file.choos window port versatil function choose.fil choose.dir similar function tcltk packag tk_choose.fil tk_choose.dir 
+512: function file.show file.edit display edit one file way appro- priat port use facil consol rgui window r.app one use 
+513: support link filesystem see function file.link sys.readlink 
+514: 14.2 filepath except reli underli function manipul filepaths. aspect allow depend even version posix standard ose interpret filepath mani user assum posix complianc window claim compliant ose may less complet compliant 
+515: follow issu encount filepath posix filesystem case-sensit foo.png foo.png differ files. howev default window case-insensit fat filesystem com- monli use remov storag normal case-sensit filepath may map lower case 
+516: almost window servic support use slash backslash filepath separ convert known except form requir window 
+517: chapter facil behaviour filepath trail slash os-dependent. path valid window expect work. posix-2008 requir path match directori earlier version allow also match files. best avoid 
+518: multipl slash filepath /abc//def valid posix filesystem treat one slash. usual accept window function howev lead doubl slash may differ mean 
+519: filepath may work unc server dir1 dir2 file functions. posix filesystem allow treat lead doubl slash special window allow filepath contain drive rel current directori drive e.g. foo/bar refer /a/b/c/foo/bar current directori drive /a/b/c intend work use absolut path safer 
+520: server dir1 dir2 file support window unc function basenam dirnam select part file path recommend way as- sembl file path compon file.path. function pathexpand tild expans substitut valu home directori current user perhap user filesystem link singl file refer mani filepaths. function normalizepath find canon filepath 
+521: window concept short 8.3 long file name normalizepath return absolut path use long file name shortpathnam return version use short name latter contain space use backslash separ sometim use export name 
+522: file permiss relat topic 
+523: support posix concept read/write/execut permiss owner/group/al may partial support filesystem exampl window read-onli file account run session recognized. access control list acl employ sever filesystem agre standard facil control them. use sys.chmod chang permiss 
+524: 14.3 system command function system system2 use invok system command option collect output. system2 littl gener main advantag easier write cross-platform code use 
+525: system behav differ window ose api call name elsewher invok shell run command window port function shell 
+526: find includ command use sys.which attempt cross-platform way unfortun standard servic 
+527: function shquot quot filepath need command current 
+528: 14.4 compress archiv recent version extens facil read write compress file often transpar- ently. read file vey larg extent done connect file function use open connect file url abl identifi compress use magic header file 
+529: type compress support longest gzip compress remain good gener compromise. file compress earlier unix compress util also read becom rare. two form compress chapter facil bzip2 util also available. gener achiev higher rate compress depend file much higher expens slower decompress much slower compress 
+530: confus lzma compress see http //en.wikipedia.org/ wiki/xz http //en.wikipedia.org/wiki/lzma read file compress version either 
+531: file archiv singl file contain collect file common one tarbal zip file use distribut packages. list unpack see function untar unzip creat zip help extern program 
+532: appendix sampl session appendix sampl session follow session intend introduc featur environ use them. mani featur system unfamiliar puzzl first puzzlement soon disappear 
+533: start appropri platform see appendix invok page 
+534: program begin banner within code prompt left hand side shown avoid con- fusion. help.start start html interfac on-lin help use web browser avail machin briefli explor featur facil mous iconifi help window move next part 
+535: rnorm rnorm gener two pseudo-random normal vector y-coordin 
+536: plot plot point plane. graphic window appear automat 
+537: see object workspac 
+538: remov object longer needed. clean 
+539: make 
+540: sqrt weight vector standard deviat 
+541: dummi data.fram rnorm dummi make data frame two column look 
+542: data dummi summari fit simpl linear regress look analysis. left tild model depend 
+543: fm1 data dummi weight 1/w summari fm1 sinc know standard deviat weight regress 
+544: attach dummi make column data frame visibl variabl 
+545: lrf lowess make nonparametr local regress function 
+546: plot standard point plot 
+547: line lrf add local regress 
+548: ablin lti true regress line intercept slope 
+549: ablin coef unweight regress line 
+550: appendix sampl session ablin coef fm1 col red weight regress line 
+551: detach remov data frame search path 
+552: plot fit resid xlab fit valu ylab residu main residu fit standard regress diagnost plot check heteroscedasticity. see qqnorm resid main residu rankit plot normal score plot check skew kurtosi outliers. use here. fm1 lrf dummi clean 
+553: next section look data classic experi michelson measur speed light. dataset avail morley object read illustr read.tabl function 
+554: filepath system.fil data morley.tab packag dataset filepath get path data file 
+555: file.show filepath optional. look file 
+556: read.tabl filepath read michelson data data frame look it. five exper- iment column expt run column run record speed light suitabl code 
+557: expt factor expt run factor run chang expt run factor 
+558: attach make data frame visibl posit default 
+559: plot expt speed main speed light data xlab experi no. compar five experi simpl boxplot 
+560: aov speed run expt data summari analyz random block run experi factor 
+561: fm0 updat run anova fm0 fit sub-model omit run compar use formal analysi varianc 
+562: detach fm0 clean move 
+563: look graphic featur contour imag plot 
+564: seq -pi len vector equal space valu 
+565: appendix sampl session outer function co squar matrix row column index respect valu function co 
+566: oldpar par no.readonli true par pti save plot paramet set plot region squar 
+567: contour contour nlevel add true make contour map add line detail 
+568: f-t asymmetr part transpos 
+569: contour nlevel make contour plot 
+570: par oldpar restor old graphic paramet 
+571: imag imag make high densiti imag plot get hardcopi wish 
+572: object clean move 
+573: complex arithmet also 
+574: seq -pi len 100 exp use complex number 
+575: par pti plot type plot complex argument mean plot imaginari versu real parts. circl 
+576: rnorm 100 rnorm 100 suppos want sampl point within unit circle. one method would take complex number standard normal real imaginari part 
+577: ifels mod 1/w map outsid circl onto reciproc 
+578: plot xlim -1,1 ylim -1,1 pch ,xlab ylab line point insid unit circl distribut uniform 
+579: sqrt runif 100 exp runif 100 plot xlim -1,1 ylim -1,1 pch xlab ylab line second method use uniform distribution. point look evenli space disc 
+580: clean 
+581: quit program. ask want save workspac exploratori session like probabl want save 
+582: appendix invok appendix invok user window read os-specif section first command-lin use also support 
+583: b.1 invok command line work command line unix window command use start main program form option infil outfil via cmd interfac wrapper variou tool e.g. process file document format manipul add-on packag intend call directli 
+584: window command-lin rterm.ex prefer need ensur either environ variabl tmpdir unset point valid place creat temporari file directori 
+585: option control happen begin end session. startup mechan follow see also on-lin help topic startup informa- tion section windows-specif detail unless --no-environ given search user site file process set environ variables. name site file one point environ- ment variabl r_environ unset r_home/etc/renviron.sit use exist user file one point environ variabl r_environ_us set otherwis file .renviron current user home directori order search for. file contain line form name valu see help startup precis description. variabl might want set includ papers default paper size r_printcmd default print command r_lib specifi list librari tree search add-on packag 
+586: search site-wid startup profil unless command line option --no- site-fil given. name file taken valu r_profil environ variable. variabl unset default r_home/etc/rprofile.sit use exist 
+587: unless --no-init-fil given search user profil sourc it. name file taken environ variabl r_profile_us unset file call .rprofil current directori user home directori order search 
+588: also load save workspac file .rdata current directori one unless --no-restor --no-restore-data specifi 
+589: final function .first exist executed. function well .last execut end session defin appropri startup profil resid .rdata 
+590: addit option control memori avail process see on-lin help topic memori inform user normal need use unless tri limit amount memori use 
+591: accept follow command-lin option 
+592: --help --version print short help messag standard output exit success 
+593: print version inform standard output exit success 
+594: appendix invok --encod enc specifi encod assum input consol stdin. need encod known iconv see help page --encod enc also accepted. input re-encod local run need represent latter encod e.g. re-encod greek text french local unless local use utf-8 encod 
+595: rhome print path home directori standard output exit success- fully. apart front-end shell script man page instal put everyth execut packag etc. directori 
+596: --save --no-sav control whether data set save end session. neither given interact session user ask desir behavior end session non-interact use one must specifi impli option see 
+597: --no-environ read user file set environ variabl 
+598: --no-site-fil read site-wid profil startup 
+599: --no-init-fil read user profil startup 
+600: --restor --no-restor --no-restore-data control whether save imag file .rdata directori start restor startup not. default restor --no-restor impli specif --no-restore- options. --no-restore-histori control whether histori file normal file .rhistori directori start set environ variabl r_histfil restor startup not. default restor 
+601: --no-rconsol window prevent load rconsol file startup 
+602: --vanilla combin --no-sav --no-environ --no-site-fil --no-init-fil --no- restore. window also includ --no-rconsol 
+603: file --file file rgui.ex take input file mean stdin. impli --no-sav unless --save set. unix-alik shell metacharact avoid file space allow 
+604: express rgui.ex use express input line. one option use togeth --file. impli --no-sav unless --save set. limit 10,000 byte total length express use way. express contain space shell metacharact need quoted. appendix invok --no-readlin unix turn command-lin edit via readline. use run- ning within emac use ess emac speak statist package. see appendix command-lin editor page information. command- line edit enabl default interact use see --interact option also affect tilde-expans see help path.expand 
+605: --min-vsiz --min-nsiz expert use set initi trigger size garbag collect vector heap byte con cell number respectively. suffix specifi megabyt million cell respectively. default 6mb 350k respect also set environ variabl r_nsize r_vsize 
+606: --max-ppsiz specifi maximum size pointer protect stack locations. default 10000 increas allow larg complic calcul done. current maximum valu accept 100000 
+607: --max-mem-s window specifi limit amount memori use object work areas. set default smaller amount physic ram machin 32-bit 1.5gb1 must 32mb maximum allow version window 
+608: --quiet --silent print initi copyright welcom messag 
+609: --slave make run quietli possible. option intend support program use comput result them. impli --quiet --no-sav 
+610: --interact unix assert realli run interact even input redirect use input fifo pipe fed interact program default deduc run interact stdin connect termin pty. use --file assert non-interact use even --interact given note turn command-lin edit 
+611: --ess window set rterm use r-inferior-mod ess includ assert- ing interact use without command-lin editor buffer stdout 
+612: --verbos print inform progress particular set option verbos true. code use option control print diagnost messag 
+613: --debugg name name unix run debugg name. debugg except valgrind recent version gdb command line option disregard instead given start execut insid debugg 
+614: --gui type type unix use type graphic user interfac note also includ in- teract graphic current possibl valu type x11 default 2.5gb version window support 3gb per process support enabl see rw-faq q2.9 3.5gb 64-bit version window 
+615: appendix invok provid tcl/tk support avail back-compat x11 accepted. --arch name unix run specifi sub-architectur 
+616: --arg flag noth except caus rest command line skip use retriev valu commandarg true 
+617: note input output redirect usual way use line length limit 4095 byte still applies. warn error messag sent error channel stderr 
+618: command cmd allow invoc variou tool use conjunct intend call directli gener form cmd command arg command name tool arg argument pass 
+619: current follow tool avail 
+620: batch run batch mode. run --restor --save possibl option see batch 
+621: compil unix compil fortran file use 
+622: shlib build share librari dynam load 
+623: instal instal add-on packag 
+624: remov remov add-on packag 
+625: build check link rprof rdconv rd2txt build packag add-on packag 
+626: check add-on packag 
+627: unix front-end creat execut program 
+628: post-process profil file 
+629: convert format variou format includ html latex plain text extract examples. rd2txt use shorthand rd2conv txt 
+630: rd2pdf convert format pdf 
+631: stangl extract s/r code sweav vignett document sweav process sweav vignett document rdiff diff output ignor header etc config obtain configur inform javareconf rtag open unix updat java configur variabl unix creat emacs-styl tag file file window open file via window file associ texifi window process tex file style file use appendix invok cmd command --help obtain usag inform tool access via cmd interfac 
+632: addit use option --arch --no-environ --no-init-fil --no-site- file --vanilla cmd affect process run tools. --vanilla equival --no-environ --no-site-fil --no-init-file. howev note cmd use startup file particular neither user site renviron file process run tool except batch use --no-restore. use --vanilla invok startup file current except instal remov sweav shlib use --no-site-fil --no-init-fil 
+633: cmd cmd arg execut cmd path given absolut filepath use environ specif command run exampl run ldd pdflatex. window cmd execut batch file extens .sh .pl appropri interpret avail call run 
+634: b.2 invok window two way run windows. within termin window e.g. cmd.ex capabl shell method describ previou section may use invok r.ex directli rterm.exe. interact use console-bas gui rgui.ex 
+635: startup procedur window similar unix refer home directori need clarifi alway defin windows. environ variabl r_user defin give home directory. next environ variabl home defin give home directory. two user-control set tri find system defin home directories. first tri use window person directori typic document set usernam document window fail environ variabl homedr homepath defin normal defin home directory. fail home directori taken start directori 
+636: need ensur either environ variabl tmpdir tmp temp either unset one point valid place creat temporari file directori 
+637: environ variabl suppli name valu pair command line argument end .rdata case interpret path workspac restor impli --restor set work directori parent name file. mechan use drag-and-drop file associ rgui.ex also work rterm.exe. name file exist set work directori parent directori exists. follow addit command-lin option avail invok rgui.ex 
+638: --mdi --sdi --no-mdi control whether rgui oper mdi program multipl child window within one main window sdi applic multipl top-level window consol graphic pager command-lin set overrid set user rconsol file 
+639: --debug enabl break debugg menu item rgui trigger break debugg command line process 
+640: window cmd may also specifi .bat .ex .sh .pl file. run appropri interpret perl .pl sever environ variabl set appropri includ r_home r_ostyp path bstinput texinputs. exampl alreadi latex.ex path appendix invok cmd latex.ex mydoc run latex mydoc.tex path share/texmf macro append texinput unfortun help miktex build latex cmd texifi mydoc work case. b.3 invok two way run within terminal.app window invok method describ first subsect apply. also console-bas gui r.app default instal applic folder system. standard double-click applic 
+641: startup procedur similar unix r.app make use command-lin arguments. home directori one insid r.framework startup current work directori set user home directori unless differ startup directori given prefer window access within gui 
+642: b.4 script want run file foo.r command recommend way use cmd batch foo.r. want run background batch job use os-specif facil exampl shell unix-alik ose cmd batch foo.r run background job 
+643: pass paramet script via addit argument command line exampl exact quot need depend shell use cmd batch --arg arg1 arg2 foo.r pass argument script retriev charact vector arg commandarg true made simpler altern front-end rscript invok rscript foo.r arg1 arg2 also use write execut script file like least unix-alik window shell /path/to/rscript arg commandarg true statu exit statu code enter text file runfoo made execut chmod 755 runfoo invok differ argument runfoo arg1 arg2 option see help rscript write output stdout stderr redirect usual way shell run command 
+644: wish hardcod path rscript path normal case instal except window e.g. user may need add /usr/local/bin path use /usr/bin/env rscript 
+645: least bourn bash shell mechan allow extra argument like /usr/bin/env rscript --vanilla 
+646: one thing consid stdin refer to. commonplac write script segment like appendix invok chem scan 2.90 3.10 3.40 3.40 3.70 3.70 2.80 2.50 2.40 2.40 2.70 2.20 5.28 3.37 3.03 3.03 28.95 3.77 3.40 2.20 3.50 3.60 3.70 3.70 stdin refer script file allow tradit usage. want refer process stdin use stdin file connect e.g. scan stdin ... 
+647: anoth way write execut script file suggest fran coi pinard use document like /bin/sh environ variabl set --slave option eof program goe here. 
+648: eof stdin refer program sourc stdin usabl 
+649: short script pass rscript command-lin via flag. empti script accepted. note unix-alik input filenam foo.r contain space shell metacharact 
+650: appendix command-lin editor appendix command-lin editor c.1 preliminari gnu readlin librari avail time configur compil un- der unix inbuilt command line editor allow recal edit re-submiss prior command used. note version readlin exist may use inbuilt command line editor use happen 
+651: disabl use usag ess1 use startup option --no-readlin 
+652: window version somewhat simpler command-lin edit see consol help menu gui file readme.rterm command-lin edit rterm.ex 
+653: use readlin capabl function describ avail well other probabl document man readlin info readlin system 
+654: mani use either control meta characters. control charact control-m obtain hold ctrl press key written c-m meta charact meta-b type hold meta2 press written m-b following. termin meta key enabl still type meta charact use two-charact sequenc start esc. thu enter m-b could type escb. esc charact sequenc also allow termin real meta keys. note case signific meta charact 
+655: c.2 edit action program keep histori command line type includ erron line command histori may recal chang necessari re-submit new command emacs-styl command-lin edit straight type edit phase caus charact insert command edit displac charact right cursor. mode charact insert mode start m-i m-a charact type insert mode finish type esc. default emacs-styl describ mode see readlin documentation. press ret command time caus command re-submit 
+656: edit action summar follow tabl 
+657: c.3 command-lin editor summari command recal vertic motion c-p c-n previou command backward histori 
+658: next command forward histori 
+659: c-r text find last command text string 
+660: termin also use arrow key instead c-p c-n respect 
+661: emac speak statist packag see url http //ess.r-project.org keyboard usual alt key occasion window key. mac keyboard normal meta key avail 
+662: appendix command-lin editor horizont motion cursor c-a c-e m-b m-f c-b c-f begin command 
+663: end line 
+664: back one word 
+665: forward one word 
+666: back one charact 
+667: forward one charact 
+668: termin also use left right arrow key instead c-b c-f respect 
+669: edit re-submiss text insert text cursor 
+670: c-f text append text cursor 
+671: del c-d m-d c-k c-i c-t m-l m-c ret delet previou charact left cursor 
+672: delet charact cursor 
+673: delet rest word cursor save 
+674: delet cursor end command save 
+675: insert yank last save text 
+676: transpos charact cursor next 
+677: chang rest word lower case 
+678: chang rest word upper case 
+679: re-submit command 
+680: final ret termin command line edit sequenc readlin key bind custom usual way via /.inputrc file. custom condit applic includ section like c-xd endif appendix function variabl index appendix function variabl index .first .last ablin ace add1 anova aov aperm array as.data.fram as.vector attach attr attribut ava axi boxplot. break bruto cbind coef coeffici contour. contrast coplot co crossprod cut data data.fram density. det detach determin dev.list 
