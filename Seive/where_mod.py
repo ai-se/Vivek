@@ -559,7 +559,7 @@ def whereMain():
   for _ in range(max):
     one = candidate(m)  #Generate candidate
     #print ">>>>>>>>>>>>>>>>>>>>>>>>>>>>^^^^^^^^^^^^^^^^^ %f"%one.xblock
-    kept + scores(m,one) #Store the scores in kept, mu: mean, m2: variance
+    #kept + scores(m,one) #Store the scores in kept, mu: mean, m2: variance
     pop += [one]         #Store all the candidates in pop
   slots = where0(verbose = True,
                minSize = max**0.5,
